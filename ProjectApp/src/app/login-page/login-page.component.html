@@ -1,0 +1,46 @@
+<div class="container">
+  <div class="row">
+      <div class="">
+          <div class="card">
+              <div class="text-center"><h1>Login</h1></div>
+                  <form class="form"  #login = "ngForm" (ngSubmit)="onClickSubmit(login.value)">
+                      <div class="mb-3">
+                        <input [(ngModel)]="user.e_mail" type="email" class="form-control" id="email" name="e_mail" email #e_mail=ngModel placeholder="Enter email" required>
+                        <div class="alert alert-danger" *ngIf="e_mail.touched && e_mail.errors?.['required']">This field can't be empty</div>
+                        <div class='alert alert-danger' *ngIf="e_mail.errors?.['email']">Please enter a valid email</div>
+                      </div>
+                      <div class="mb-3">
+                        <input required [(ngModel)]="user.password" name="password" type="password" pattern="^.*(?=.{8,})(?=.*[a-zA-Z])(?=.*\d)(?=.*[!#$%&?@]).*$" #password=ngModel class="form-control" placeholder="Enter Password" id="exampleInputPassword1">
+                        <div class="alert alert-danger" *ngIf="password.touched && password.errors?.['required']">This field can't be empty</div>
+                        <div class='alert alert-danger' *ngIf="password.errors?.['pattern']">Please enter a valid password</div>
+                      </div>
+                      <div *ngIf="messageSet" class="alert alert-danger">{{message}}</div>
+                      <input [disabled]="password.errors?.['required'] || password.errors?.['pattern'] || e_mail.errors?.['required'] || e_mail.errors?.['email']" type="submit" ng-disabled="form.email.$invalid && form.email.$dirty" class="btn btn-primary" value="Login"/>
+                  </form>
+                  <a style='color:white; margin-top: 10px;' routerLink='/Sign-up'>New user? Sign up!</a>
+              </div>
+          </div>
+      </div>
+  </div>
+  
+<!--
+<div class="container">
+<div class="row">
+    <div class="">
+        <div class="card">
+            <div class="text-center"><h1>Login</h1></div>
+                <form class="form">
+                    <div class="mb-3">
+                      <input required type="email" class="form-control" id="email" name="email" placeholder="Enter email">
+                    </div>
+                    <div class="mb-3">
+                      <input type="password" class="form-control" placeholder="Enter Password" id="exampleInputPassword1">
+                    </div>
+                    <button routerLink="/applyloan" type="submit" class="btn btn-primary">Login</button>
+                </form>
+                <a style='color:white; margin-top: 10px;' routerLink='/Sign-up'>New user? Sign up!</a>
+        </div>
+    </div>
+</div>
+</div>
+-->
