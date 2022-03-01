@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-applyloan',
@@ -7,6 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ApplyloanComponent {
   
+  constructor(private router: Router){}
 
-
+  logout(){
+    sessionStorage.removeItem("UserId");
+    this.router.navigate(['/login-page'])
+  }
 }

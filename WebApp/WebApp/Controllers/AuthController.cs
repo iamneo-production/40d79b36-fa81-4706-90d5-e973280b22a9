@@ -61,12 +61,14 @@ namespace WebApp.Controllers
         public string saveUser([FromBody] User user)
         {
             user.password = Encrypt(user.password);
-            db.Users.Add(user);
-            db.SaveChanges();
 
             Login login = new Login();
             login.email = user.email;
             login.password = user.password;
+
+            db.Users.Add(user);
+            db.SaveChanges();
+
             db.Logins.Add(login);
             db.SaveChanges();
 

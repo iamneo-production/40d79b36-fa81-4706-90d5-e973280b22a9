@@ -11,9 +11,13 @@ namespace WebApp.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+
     public partial class LoanApplicant
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int loanId { get; set; }
         public string loanType { get; set; }
         public string loanAmountRequired { get; set; }

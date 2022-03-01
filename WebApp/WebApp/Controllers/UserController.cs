@@ -54,11 +54,14 @@ namespace WebApp.Controllers
         public string deleteUser(int userid)
         {
             User user = db.Users.Find(userid);
-            db.Users.Remove(user);
-            db.SaveChanges();
             Login login = db.Logins.Find(user.email);
+
             db.Logins.Remove(login);
             db.SaveChanges();
+
+            db.Users.Remove(user);
+            db.SaveChanges();
+
             return "user deleted";
         }
     }
