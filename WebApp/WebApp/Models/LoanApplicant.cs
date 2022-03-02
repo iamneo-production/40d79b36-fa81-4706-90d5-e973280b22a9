@@ -14,6 +14,7 @@ namespace WebApp.Models
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
+
     public partial class LoanApplicant
     {
         [Key]
@@ -28,9 +29,7 @@ namespace WebApp.Models
         public string applicantAadhaar { get; set; }
         public string applicantPan { get; set; }
         public string applicantSalary { get; set; }
-        public string LoanRepaymentMethod { get; set; }
         public string LoanRepaymentMonths { get; set; }
-        public string TimestampOfLoan { get; set; }
         public int documentId { get; set; }
     
         public virtual Document Document { get; set; }

@@ -14,6 +14,7 @@ namespace WebApp.Models
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
+
     public partial class User
     {
         [Key]

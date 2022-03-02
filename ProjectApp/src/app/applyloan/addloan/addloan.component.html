@@ -1,5 +1,8 @@
+<html>
+
 <br />
 <div class="" style="text-align: center;">
+    
     <div class="row" style="text-align: center;">
         <div class="col d-flex justify-content-center text-center fixed-row-bottom">
             <ul class="nav">
@@ -12,6 +15,7 @@
                 
             </ul>
         </div>
+        <form class="form" #Loanform="ngForm"  (ngSubmit)="onClickSubmit(Loanform.value)">
             <div class="tab-content">
                 
                 <div id="one" class="fuild-container row tab-pane active">
@@ -101,8 +105,12 @@
 
                         </form>
                     </div>
+                    <br/>
+                    <br/>
+                    <button type="submit" class="btn btn-success">Apply Loan</button>
                 </div>
             </div>
+        </form>
 
         </div>
     </div>
@@ -111,11 +119,14 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">
 </script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
 
 
 
 
-
+</html>
 
 <!-- <html>
 <head>

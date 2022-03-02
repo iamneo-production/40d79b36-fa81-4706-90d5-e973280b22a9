@@ -18,6 +18,7 @@ namespace WebApp.Controllers
         [Route("addUser")]
         public string addUser(User user)
         {
+            Console.WriteLine(user);
             return new AuthController().saveUser(user);
         }
 
