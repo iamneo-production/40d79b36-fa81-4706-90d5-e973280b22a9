@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { SharedService } from '../../shared.service';
 import { Router } from '@angular/router';
 import * as $ from 'jquery';
+import { NONE_TYPE } from '@angular/compiler';
 
 @Component({
   selector: 'app-addloan',
@@ -10,51 +11,47 @@ import * as $ from 'jquery';
 })
 export class AddloanComponent  {
 
-  user:any={};
+  user: any = {};
+  email!: any;
+  fileToUpload!: File;
   constructor(private service: SharedService, private router: Router){}
 
+  ngOnInit(): void
+  {
+    this.service.getUser(sessionStorage.getItem("UserId")).subscribe(res=>{
+      this.email = res.email;
+      console.log(res);
+      console.log(res.email);
+    });
+  }
+  onSelectFile(event: any) {  
+    this.fileToUpload = event.target.files.item(0);
+  }  
+
   onClickSubmit(value: any){
+    let formData = new FormData();
     var loanapp = {
       loanType:"business",
       loanAmountRequired:value.amount,
       applicantName:value.name,
       applicantAddress:value.add,
       applicantMobile:value.mob,
-      applicantEmail:value.email,
+      applicantEmail: this.email,
       applicantAadhaar:value.aadh,
       applicantPan:value.panno,
       applicantSalary:value.sal,
-      LoanRepaymentMonths:value.number
- 
+      documentId: 0
     };
-    var document= {
-      documentType:value.selector,
-      documentUpload:"document"
+    console.log(loanapp);
+    formData.append("type", value.selector);
+    formData.append("file", this.fileToUpload);
 
-    };
-    var myData :any = {};
-    myData.loanAppData=loanapp;
-    myData.documentData=document;
-
-    $.ajax({
-      type: 'POST',
-      async: true,
-      dataType: "json",
-      url: "http://localhost:65487/AddLoan",
-      data: myData,
-      success: function (data) {
-          console.log("Response Data ↓");
-          console.log(data);
-      },
-      error: function (err) {
-          console.log(err);
-      }
-  });
-
-    // this.service.addUser(val).subscribe(res=>{
-    //   alert(res.toString());
-    //   this.router.navigate(['/login-page']);
-    // })
+    this.service.addDocument(formData).subscribe((res: any)=>{
+      loanapp.documentId = parseInt(res);
+      this.service.addLoan(loanapp).subscribe(res=>{
+        alert(res.toString());
+      })
+    })
   }
 }
 

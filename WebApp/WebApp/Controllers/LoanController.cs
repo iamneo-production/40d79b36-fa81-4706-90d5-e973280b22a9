@@ -6,19 +6,41 @@ using System.Net.Http;
 using System.Web.Http;
 using WebApp.Models;
 using Newtonsoft.Json.Linq;
+using System.Web;
+using System.IO;
 
 namespace WebApp.Controllers
 {
     public class LoanController : ApiController
     {
         Entities db = new Entities();
+
         [HttpPost]
-        [Route ("AddLoan")]
-        public string AddLoan([FromBody] JObject data )
+        [Route("addDocument")]
+        public int AddDocument()
         {
-            LoanApplicant loanApplicant = data["loanAppData"].ToObject<LoanApplicant>();
-            Document document = data["documentData"].ToObject<Document>();
+            var httpRequest = HttpContext.Current.Request;
+            var postedFile = httpRequest.Files["file"];
+            var dType = httpRequest.Form["type"];
+            byte[] bytes;
+            using (BinaryReader br = new BinaryReader(postedFile.InputStream))
+            {
+                bytes = br.ReadBytes(postedFile.ContentLength);
+            }
+            Document document = new Document
+            {
+                documentType = dType,
+                documentUpload = bytes
+            };
             db.Documents.Add(document);
+            db.SaveChanges();
+            return document.documentId;
+        }
+
+        [HttpPost]
+        [Route ("addLoan")]
+        public string AddLoan([FromBody] LoanApplicant loanApplicant)
+        {
             db.LoanApplicants.Add(loanApplicant);
             db.SaveChanges();
             return "loan applied succesfully";

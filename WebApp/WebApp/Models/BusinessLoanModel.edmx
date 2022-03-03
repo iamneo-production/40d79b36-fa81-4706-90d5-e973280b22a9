@@ -27,7 +27,9 @@
           <Property Name="applicantAadhaar" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="applicantPan" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="applicantSalary" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="LoanRepaymentMonths" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="LoanRepaymentMethod" Type="varchar" MaxLength="100" />
+          <Property Name="LoanRepaymentMonths" Type="varchar" MaxLength="100" />
+          <Property Name="TimestampOfLoan" Type="varchar" MaxLength="100" />
           <Property Name="documentId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Login">
@@ -48,7 +50,13 @@
           <Property Name="mobileNumber" Type="varchar" MaxLength="15" Nullable="false" />
           <Property Name="userRole" Type="varchar" MaxLength="10" Nullable="false" />
         </EntityType>
-        <Association Name="FK__LoanAppli__docum__300424B4">
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'f_k' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="f_k" />-->
+        <!--Errors Found During Generation:
+warning 6035: The relationship 'f1_k' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+        <Association Name="f1_k" />-->
+        <Association Name="FK__LoanAppli__docum__3C69FB99">
           <End Role="Document" Type="Self.Document" Multiplicity="1" />
           <End Role="LoanApplicant" Type="Self.LoanApplicant" Multiplicity="*" />
           <ReferentialConstraint>
@@ -68,7 +76,7 @@ warning 6035: The relationship 'FK__Login__email__2A4B4B5E' has columns that are
           <EntitySet Name="LoanApplicant" EntityType="Self.LoanApplicant" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Login" EntityType="Self.Login" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__LoanAppli__docum__300424B4" Association="Self.FK__LoanAppli__docum__300424B4">
+          <AssociationSet Name="FK__LoanAppli__docum__3C69FB99" Association="Self.FK__LoanAppli__docum__3C69FB99">
             <End Role="Document" EntitySet="Document" />
             <End Role="LoanApplicant" EntitySet="LoanApplicant" />
           </AssociationSet>
@@ -85,7 +93,7 @@ warning 6035: The relationship 'FK__Login__email__2A4B4B5E' has columns that are
           <Property Name="documentId" Type="Int32" Nullable="false" />
           <Property Name="documentType" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="documentUpload" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
-          <NavigationProperty Name="LoanApplicants" Relationship="Self.FK__LoanAppli__docum__300424B4" FromRole="Document" ToRole="LoanApplicant" />
+          <NavigationProperty Name="LoanApplicants" Relationship="Self.FK__LoanAppli__docum__3C69FB99" FromRole="Document" ToRole="LoanApplicant" />
         </EntityType>
         <EntityType Name="LoanApplicant">
           <Key>
@@ -101,9 +109,11 @@ warning 6035: The relationship 'FK__Login__email__2A4B4B5E' has columns that are
           <Property Name="applicantAadhaar" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="applicantPan" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="applicantSalary" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="LoanRepaymentMonths" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LoanRepaymentMethod" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="LoanRepaymentMonths" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TimestampOfLoan" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="documentId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Document" Relationship="Self.FK__LoanAppli__docum__300424B4" FromRole="LoanApplicant" ToRole="Document" />
+          <NavigationProperty Name="Document" Relationship="Self.FK__LoanAppli__docum__3C69FB99" FromRole="LoanApplicant" ToRole="Document" />
         </EntityType>
         <EntityType Name="Login">
           <Key>
@@ -123,7 +133,7 @@ warning 6035: The relationship 'FK__Login__email__2A4B4B5E' has columns that are
           <Property Name="mobileNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="userRole" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
-        <Association Name="FK__LoanAppli__docum__300424B4">
+        <Association Name="FK__LoanAppli__docum__3C69FB99">
           <End Role="Document" Type="Self.Document" Multiplicity="1" />
           <End Role="LoanApplicant" Type="Self.LoanApplicant" Multiplicity="*" />
           <ReferentialConstraint>
@@ -140,7 +150,7 @@ warning 6035: The relationship 'FK__Login__email__2A4B4B5E' has columns that are
           <EntitySet Name="LoanApplicants" EntityType="Self.LoanApplicant" />
           <EntitySet Name="Logins" EntityType="Self.Login" />
           <EntitySet Name="Users" EntityType="Self.User" />
-          <AssociationSet Name="FK__LoanAppli__docum__300424B4" Association="Self.FK__LoanAppli__docum__300424B4">
+          <AssociationSet Name="FK__LoanAppli__docum__3C69FB99" Association="Self.FK__LoanAppli__docum__3C69FB99">
             <End Role="Document" EntitySet="Documents" />
             <End Role="LoanApplicant" EntitySet="LoanApplicants" />
           </AssociationSet>
@@ -173,7 +183,9 @@ warning 6035: The relationship 'FK__Login__email__2A4B4B5E' has columns that are
                 <ScalarProperty Name="applicantAadhaar" ColumnName="applicantAadhaar" />
                 <ScalarProperty Name="applicantPan" ColumnName="applicantPan" />
                 <ScalarProperty Name="applicantSalary" ColumnName="applicantSalary" />
+                <ScalarProperty Name="LoanRepaymentMethod" ColumnName="LoanRepaymentMethod" />
                 <ScalarProperty Name="LoanRepaymentMonths" ColumnName="LoanRepaymentMonths" />
+                <ScalarProperty Name="TimestampOfLoan" ColumnName="TimestampOfLoan" />
                 <ScalarProperty Name="documentId" ColumnName="documentId" />
               </MappingFragment>
             </EntityTypeMapping>

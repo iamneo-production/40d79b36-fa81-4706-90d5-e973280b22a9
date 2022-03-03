@@ -41,4 +41,12 @@ export class SharedService {
   deleteUser(val: any){
     return this.http.delete(this.APIUrl+'/deleteUser?userid='+val);
   }
+
+  addLoan(val: any){
+    return this.http.post(this.APIUrl+'/addLoan', val);
+  }
+
+  addDocument(val: FormData){
+    return this.http.post(this.APIUrl+'/addDocument', val);
+  }
 }

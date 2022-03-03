@@ -11,7 +11,9 @@ namespace WebApp.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+
     public partial class Document
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,6 +22,8 @@ namespace WebApp.Models
             this.LoanApplicants = new HashSet<LoanApplicant>();
         }
     
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int documentId { get; set; }
         public string documentType { get; set; }
         public byte[] documentUpload { get; set; }
