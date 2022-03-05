@@ -46,8 +46,9 @@
                         </div>
                         <div class="col">
                         <div class="container">
-                            <input required [(ngModel)]="user.panno" #panno=ngModel type="text" id="enterPanNo" name="panno" placeholder="Enter Applicant PAN number">
+                            <input required [(ngModel)]="user.panno" #panno=ngModel pattern="[A-Z]{5}[0-9]{4}[A-Z]{1}" type="text" id="enterPanNo" name="panno" placeholder="Enter Applicant PAN number">
                             <div class="alert alert-danger" *ngIf="panno.touched && panno.errors?.['required']">This field can't be empty</div>
+                            <div class='alert alert-danger' *ngIf="panno.errors?.['pattern']">Please enter a valid PAN number</div>
                         </div>
                         <br/>
                         <div class="container">
