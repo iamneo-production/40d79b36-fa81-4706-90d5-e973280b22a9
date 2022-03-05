@@ -11,13 +11,9 @@ namespace WebApp.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-
+    
     public partial class LoanApplicant
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int loanId { get; set; }
         public string loanType { get; set; }
         public string loanAmountRequired { get; set; }
@@ -30,7 +26,7 @@ namespace WebApp.Models
         public string applicantSalary { get; set; }
         public string LoanRepaymentMethod { get; set; }
         public string LoanRepaymentMonths { get; set; }
-        public string TimestampOfLoan { get; set; }
+        public string TimestampofLoan { get; set; }
         public int documentId { get; set; }
     
         public virtual Document Document { get; set; }
