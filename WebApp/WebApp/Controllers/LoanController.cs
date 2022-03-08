@@ -8,6 +8,7 @@ using WebApp.Models;
 using Newtonsoft.Json.Linq;
 using System.Web;
 using System.IO;
+using System.Net.Http.Headers;
 
 namespace WebApp.Controllers
 {
@@ -17,7 +18,7 @@ namespace WebApp.Controllers
 
         [HttpPost]
         [Route("addDocument")]
-        public int AddDocument()
+        public IHttpActionResult AddDocument()
         {
             var httpRequest = HttpContext.Current.Request;
             var postedFile = httpRequest.Files["file"];
@@ -34,7 +35,21 @@ namespace WebApp.Controllers
             };
             db.Documents.Add(document);
             db.SaveChanges();
-            return document.documentId;
+            return Ok(document.documentId);
+        }
+
+        [HttpGet]
+        [Route ("getDocument")]
+        public HttpResponseMessage GetDocument(int id)
+        {
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK);
+            Document document = db.Documents.ToList().Find(p => p.documentId == id);
+            response.Content = new ByteArrayContent(document.documentUpload);
+            response.Content.Headers.ContentLength = document.documentUpload.LongLength;
+            response.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment");
+            response.Content.Headers.ContentDisposition.FileName = "files"+document.documentType;
+            response.Content.Headers.ContentType = new MediaTypeHeaderValue(document.documentType);
+            return response;
         }
 
         [HttpPost]
