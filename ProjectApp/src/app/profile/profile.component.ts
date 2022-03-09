@@ -32,10 +32,8 @@ export class ProfileComponent implements OnInit {
     this.service.getUser(sessionStorage.getItem("UserId")).subscribe(data=>{
       this.user = data;
       this.email=this.user.email;
-      console.log(this.email)
       this.service.getLoan(this.email).subscribe(data=>{
-      this.loans=data;
-      console.log(this.loans)
+        this.loans=data;
     })
   });
   

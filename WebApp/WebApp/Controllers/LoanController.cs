@@ -43,7 +43,7 @@ namespace WebApp.Controllers
         public HttpResponseMessage GetDocument(int id)
         {
             HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK);
-            Document document = db.Documents.ToList().Find(p => p.documentId == id);
+            Document document = db.Documents.Find(id);
             response.Content = new ByteArrayContent(document.documentUpload);
             response.Content.Headers.ContentLength = document.documentUpload.LongLength;
             response.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment");
@@ -65,41 +65,23 @@ namespace WebApp.Controllers
         [Route("getLoan")]
         public IEnumerable<LoanApplicant> GetLoan(String email)
         {
-            return (from o in db.LoanApplicants
-                        where o.applicantEmail == email
-                        select new 
-                        {
-                            applicantName = o.applicantName,
-                            applicantAddress = o.applicantAddress,
-                            loanAmountRequired = o.loanAmountRequired,
-                            applicantSalary = o.applicantSalary,
-                            applicantEmail = o.applicantEmail,
-                            applicantAadhaar = o.applicantAadhaar,
-                            applicantMobile = o.applicantMobile,
-                            applicantPan = o.applicantPan,
-                            LoanRepaymentMonths = o.LoanRepaymentMonths,
-                            LoanRepaymentMethod = o.LoanRepaymentMethod,
-                            loanType = o.loanType,
-                            TimestampofLoan = o.TimestampofLoan,
-                            documentId = o.documentId,
-                            DocumentUpload=o.Document.documentUpload
-                        }).ToList().Select(x => new LoanApplicant {
-                            applicantName = x.applicantName,
-                            applicantAddress = x.applicantAddress,
-                            loanAmountRequired = x.loanAmountRequired,
-                            applicantSalary = x.applicantSalary,
-                            applicantEmail = x.applicantEmail,
-                            applicantAadhaar = x.applicantAadhaar,
-                            applicantMobile = x.applicantMobile,
-                            applicantPan = x.applicantPan,
-                            LoanRepaymentMonths = x.LoanRepaymentMonths,
-                            LoanRepaymentMethod = x.LoanRepaymentMethod,
-                            loanType = x.loanType,
-                            TimestampofLoan = x.TimestampofLoan,
-                            documentId = x.documentId,
-                           
-
-                        });
+            return db.LoanApplicants.Where(x => x.applicantEmail == email).ToList().Select(x => new LoanApplicant{
+                    loanId = x.loanId,
+                    applicantAadhaar = x.applicantAadhaar,
+                    applicantAddress = x.applicantAddress,
+                    applicantName = x.applicantName,
+                    applicantEmail = x.applicantEmail,
+                    applicantMobile = x.applicantMobile,
+                    applicantPan = x.applicantPan,
+                    loanType = x.loanType,
+                    applicantSalary = x.applicantSalary,
+                    loanAmountRequired = x.loanAmountRequired,
+                    LoanRepaymentMethod = x.LoanRepaymentMethod,
+                    LoanRepaymentMonths = x.LoanRepaymentMonths,
+                    TimestampofLoan = x.TimestampofLoan,
+                    documentId = x.documentId
+                }
+            );
         }
 
         //get specified
