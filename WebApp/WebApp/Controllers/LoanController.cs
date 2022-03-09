@@ -8,6 +8,7 @@ using WebApp.Models;
 using Newtonsoft.Json.Linq;
 using System.Web;
 using System.IO;
+using System.Net.Http.Headers;
 
 namespace WebApp.Controllers
 {
@@ -17,7 +18,7 @@ namespace WebApp.Controllers
 
         [HttpPost]
         [Route("addDocument")]
-        public int AddDocument()
+        public IHttpActionResult AddDocument()
         {
             var httpRequest = HttpContext.Current.Request;
             var postedFile = httpRequest.Files["file"];
@@ -34,7 +35,21 @@ namespace WebApp.Controllers
             };
             db.Documents.Add(document);
             db.SaveChanges();
-            return document.documentId;
+            return Ok(document.documentId);
+        }
+
+        [HttpGet]
+        [Route("getDocument")]
+        public HttpResponseMessage GetDocument(int id)
+        {
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK);
+            Document document = db.Documents.ToList().Find(p => p.documentId == id);
+            response.Content = new ByteArrayContent(document.documentUpload);
+            response.Content.Headers.ContentLength = document.documentUpload.LongLength;
+            response.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment");
+            response.Content.Headers.ContentDisposition.FileName = "files" + document.documentType;
+            response.Content.Headers.ContentType = new MediaTypeHeaderValue(document.documentType);
+            return response;
         }
 
         [HttpPost]
@@ -46,18 +61,54 @@ namespace WebApp.Controllers
             return "loan applied succesfully";
         }
         //get all
-        public IEnumerable<LoanApplicant> getLoan()
+        [HttpGet]
+        [Route("getLoan")]
+        public IEnumerable<LoanApplicant> GetLoan(String email)
         {
-            return db.LoanApplicants.ToList();
+            return (from o in db.LoanApplicants
+                        where o.applicantEmail == email
+                        select new 
+                        {
+                            applicantName = o.applicantName,
+                            applicantAddress = o.applicantAddress,
+                            loanAmountRequired = o.loanAmountRequired,
+                            applicantSalary = o.applicantSalary,
+                            applicantEmail = o.applicantEmail,
+                            applicantAadhaar = o.applicantAadhaar,
+                            applicantMobile = o.applicantMobile,
+                            applicantPan = o.applicantPan,
+                            LoanRepaymentMonths = o.LoanRepaymentMonths,
+                            LoanRepaymentMethod = o.LoanRepaymentMethod,
+                            loanType = o.loanType,
+                            TimestampofLoan = o.TimestampofLoan,
+                            documentId = o.documentId,
+                            DocumentUpload=o.Document.documentUpload
+                        }).ToList().Select(x => new LoanApplicant {
+                            applicantName = x.applicantName,
+                            applicantAddress = x.applicantAddress,
+                            loanAmountRequired = x.loanAmountRequired,
+                            applicantSalary = x.applicantSalary,
+                            applicantEmail = x.applicantEmail,
+                            applicantAadhaar = x.applicantAadhaar,
+                            applicantMobile = x.applicantMobile,
+                            applicantPan = x.applicantPan,
+                            LoanRepaymentMonths = x.LoanRepaymentMonths,
+                            LoanRepaymentMethod = x.LoanRepaymentMethod,
+                            loanType = x.loanType,
+                            TimestampofLoan = x.TimestampofLoan,
+                            documentId = x.documentId,
+                           
+
+                        });
         }
 
         //get specified
-        public LoanApplicant getLoan(int id)
-        {
-            LoanApplicant la = db.LoanApplicants.Find(id);
-            return la;
-        }
-
+        /* public LoanApplicant getLoan(int id)
+         {
+             LoanApplicant la = db.LoanApplicants.Find(id);
+             return la;
+         }
+ */
         //update
         [HttpPut]
         public string editLoan(int id, LoanApplicant loanApplicant)
