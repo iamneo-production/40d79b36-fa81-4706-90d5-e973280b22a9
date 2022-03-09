@@ -53,7 +53,7 @@
         <!--Errors Found During Generation:
 warning 6035: The relationship 'f_k' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
         <Association Name="f_k" />-->
-        <Association Name="FK__LoanAppli__docum__30F848ED">
+        <Association Name="FK__LoanAppli__docum__6EF57B66">
           <End Role="Document" Type="Self.Document" Multiplicity="1" />
           <End Role="LoanApplicant" Type="Self.LoanApplicant" Multiplicity="*" />
           <ReferentialConstraint>
@@ -70,7 +70,7 @@ warning 6035: The relationship 'f_k' has columns that are not part of the key of
           <EntitySet Name="LoanApplicant" EntityType="Self.LoanApplicant" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Login" EntityType="Self.Login" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__LoanAppli__docum__30F848ED" Association="Self.FK__LoanAppli__docum__30F848ED">
+          <AssociationSet Name="FK__LoanAppli__docum__6EF57B66" Association="Self.FK__LoanAppli__docum__6EF57B66">
             <End Role="Document" EntitySet="Document" />
             <End Role="LoanApplicant" EntitySet="LoanApplicant" />
           </AssociationSet>
@@ -87,7 +87,7 @@ warning 6035: The relationship 'f_k' has columns that are not part of the key of
           <Property Name="documentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="documentType" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="documentUpload" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
-          <NavigationProperty Name="LoanApplicants" Relationship="Self.FK__LoanAppli__docum__30F848ED" FromRole="Document" ToRole="LoanApplicant" />
+          <NavigationProperty Name="LoanApplicants" Relationship="Self.FK__LoanAppli__docum__6EF57B66" FromRole="Document" ToRole="LoanApplicant" />
         </EntityType>
         <EntityType Name="LoanApplicant">
           <Key>
@@ -107,7 +107,7 @@ warning 6035: The relationship 'f_k' has columns that are not part of the key of
           <Property Name="LoanRepaymentMonths" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="TimestampofLoan" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="documentId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Document" Relationship="Self.FK__LoanAppli__docum__30F848ED" FromRole="LoanApplicant" ToRole="Document" />
+          <NavigationProperty Name="Document" Relationship="Self.FK__LoanAppli__docum__6EF57B66" FromRole="LoanApplicant" ToRole="Document" />
         </EntityType>
         <EntityType Name="Login">
           <Key>
@@ -127,7 +127,7 @@ warning 6035: The relationship 'f_k' has columns that are not part of the key of
           <Property Name="mobileNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="userRole" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
         </EntityType>
-        <Association Name="FK__LoanAppli__docum__30F848ED">
+        <Association Name="FK__LoanAppli__docum__6EF57B66">
           <End Role="Document" Type="Self.Document" Multiplicity="1" />
           <End Role="LoanApplicant" Type="Self.LoanApplicant" Multiplicity="*" />
           <ReferentialConstraint>
@@ -144,7 +144,7 @@ warning 6035: The relationship 'f_k' has columns that are not part of the key of
           <EntitySet Name="LoanApplicants" EntityType="Self.LoanApplicant" />
           <EntitySet Name="Logins" EntityType="Self.Login" />
           <EntitySet Name="Users" EntityType="Self.User" />
-          <AssociationSet Name="FK__LoanAppli__docum__30F848ED" Association="Self.FK__LoanAppli__docum__30F848ED">
+          <AssociationSet Name="FK__LoanAppli__docum__6EF57B66" Association="Self.FK__LoanAppli__docum__6EF57B66">
             <End Role="Document" EntitySet="Documents" />
             <End Role="LoanApplicant" EntitySet="LoanApplicants" />
           </AssociationSet>

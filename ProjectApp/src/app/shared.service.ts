@@ -49,6 +49,7 @@ export class SharedService {
   addDocument(val: FormData){
     return this.http.post(this.APIUrl+'/addDocument', val, {reportProgress: true, observe: 'events'});
   }
+
   getDocument(id: any): any {
 		return this.http.get(this.APIUrl+'/getDocument?id='+id, {responseType: 'blob'});
   }
@@ -58,4 +59,5 @@ export class SharedService {
     console.log(this.http.get<any>(this.APIUrl+"/getLoan?email="+val))
     return this.http.get<any>(this.APIUrl+"/getLoan?email="+val);
   }
+
 }
