@@ -68,20 +68,26 @@
                 <div id="two" class="tab-pane">
                     <div class="selectDocumentType container" id=selectDocumentType>
                         <p>Upload documents*</p>
-                        <select required [(ngModel)]="user.selector" #selector="ngModel" name="selector" class="form-select" id="inputGroupSelect04" >
-                            <option [selected]="true" [disabled]="true" [hidden]="true">Please pick a type</option>
-                            <option value="Aadhar">Aadhar</option>
-                            <option value="Pan">Pan</option>
+                        <select required [(ngModel)]="user.selector" #selector="ngModel" name="selector" class="form-select" (change)="onSelectType($event)" id="inputGroupSelect04" >
+                            <option value="application/zip">zip</option>
+                            <option value="application/x-rar-compressed">rar</option>
+                            <option value="application/x-7z-compressed">7zip</option>
                         </select>
                         <div class="alert alert-danger" *ngIf="(selector.touched && !selector.dirty)">Please select a value</div>
                         </div>
                     <br>
                     <br>
 
-                    <div class="container" id="chooseFile">
+                    <div class="container" style="height: 120px;" id="chooseFile">
                         <p>Images or Documents (Upload only pdfs below 2Mb)</p>
-                        <input required [(ngModel)]="user.myfile" #myfile=ngModel type="file" (change)="onSelectFile($event)" id="myfile" name="myfile"><br><br>
-                        <div class="alert alert-danger" *ngIf="myfile.touched && myfile.errors?.['required']">This field can't be empty</div>    
+                        <input [disabled]="!selector.dirty" required [(ngModel)]="user.myfile" #myfile=ngModel type="file" accept=".zip,.rar,.7zip" (change)="onSelectFile($event)" id="myfile" name="myfile">
+                        <div *ngIf="displayProgress" class="progress">
+                            <div class="progress-bar" role="progressbar" [style.width.%]=progress>
+                              {{progress}}
+                            </div>
+                        </div>
+                        <a *ngIf="download" role="button" (click)="downloadFile()" style="text-decoration: underline;">Download the uploaded file(s)</a>
+                        <div class="alert alert-danger" *ngIf="myfile.touched && myfile.errors?.['required']">This field can't be empty</div>
                     </div>
                     <br/>
                     <br/>

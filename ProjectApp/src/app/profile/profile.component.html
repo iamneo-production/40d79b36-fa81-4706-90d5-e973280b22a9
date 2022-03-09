@@ -1,19 +1,35 @@
-<div class="container">
-    <div class="row py-5">
-        <div class="col">Name:</div>
-        <div class="col">Address: </div>
-    </div>
-    <div class="row py-5">
-        <div class="col">Mobile No: </div>
-        <div class="col">Loan Id: </div>
-    </div>
-    <div class="row py-5">
-        <div class="col">Email: </div>
-        <div class="col">Monthly emi: </div>
-    </div>
-    <div class="row py-5 justify-content-md-center">
-        <div class="col col-md-3"><button type="button" class="btn btn-primary pull-right">Edit</button></div>
-        <div class="col col-md-3"><button type="button" class="btn btn-danger pull-left">Delete</button></div>
-        <div class="col col-1"></div>
+<div class="container justify-content-md-center">
+    <br><br>
+    <table class="table table-bordered">
+        <thead scope="row">
+        <tr scope="row">
+        <th>loanId</th>
+        <th>DocumentId</th>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Aadhar</th>
+        <th>Pan</th>
+        <th>Salary</th>
+        <th>LoanAmount</th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let loan of loans" scope="row">
+            <td>{{loan.loanId}}</td>
+            <td>{{loan.documentId}}</td>
+            <td>{{loan.applicantName}}</td>
+            <td>{{loan.applicantAddress}}</td>
+            <td>{{loan.applicantAadhaar}}</td>
+            <td>{{loan.applicantPan}}</td>
+            <td>{{loan.applicantSalary}}</td>
+            <td>{{loan.loanAmountRequired}}</td>
+        </tr>
+    </tbody>        
+    </table>
+    <div class="row py-3 justify-content-md-center">
+        <div class="col-sm-3"></div>
+        <div class="col col-md-2"><button type="button" data-toggle="modal" data-target="#edit" class="btn btn-primary pull-right">Edit</button></div>
+        <div class="col col-md-3"><button type="button" data-toggle="modal" data-target="#delete" class="btn btn-danger pull-left">Delete</button></div>
+        <div class="col-sm-3"></div>
     </div>
 </div>
