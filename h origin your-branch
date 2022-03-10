@@ -1,0 +1,150 @@
+[33mcommit 5c41a07f54774d58edfde79ddc5b3c3cac125ad3[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Author: Thummapudi Rohini Sai <chinnirohinisai123@gmail.com>
+Date:   Thu Mar 10 15:16:37 2022 +0530
+
+    footer added
+
+[33mcommit be8692dec6484fb5c89975309e141517d043db19[m
+Author: RohinisaiT <97792051+RohinisaiT@users.noreply.github.com>
+Date:   Thu Mar 3 10:58:32 2022 +0530
+
+    Update .gitignore
+
+[33mcommit b633c8b6c46a53fdbbd821b5cfa4586dca229e68[m
+Author: Anu910 <nanjana910@gmail.com>
+Date:   Wed Mar 2 18:06:21 2022 +0530
+
+    loanManagement
+
+[33mcommit ebba86dacef6a052d2c139af6a11d72b20ba89a8[m
+Author: revanthgoli01 <revanthgoli01@gmail.com>
+Date:   Tue Mar 1 11:30:33 2022 +0530
+
+    removed some bugs
+
+[33mcommit 57a5028ba51b477441637ec20630571f53d28db0[m
+Author: revanthgoli01 <revanthgoli01@gmail.com>
+Date:   Mon Feb 28 21:10:49 2022 +0530
+
+    login, signup and profile
+
+[33mcommit 49df77129a644c7491323aae63a1fe2ac694090f[m
+Author: Revanth Goli <revanthgoli01@gmail.com>
+Date:   Mon Feb 28 19:14:22 2022 +0530
+
+    Delete dotnetapp directory
+
+[33mcommit 6917323f3b794831268506b733def52b9a361f30[m
+Author: Revanth Goli <revanthgoli01@gmail.com>
+Date:   Mon Feb 28 19:14:01 2022 +0530
+
+    Delete dotnetapp/WebApp/Properties directory
+
+[33mcommit afd1311b6d8440179d4c6f61a8753f8d99c706d4[m
+Author: revanthgoli01 <revanthgoli01@gmail.com>
+Date:   Mon Feb 28 18:39:36 2022 +0530
+
+    test
+
+[33mcommit 04c97016ab427dc88492b508e7b3c27e9123b5aa[m
+Author: revanthgoli01 <revanthgoli01@gmail.com>
+Date:   Mon Feb 28 12:29:40 2022 +0000
+
+    changes
+
+[33mcommit e5dc0242cce179e2537319f6ae1ac15c14483d06[m
+Author: revanthgoli01 <revanthgoli01@gmail.com>
+Date:   Mon Feb 28 11:39:32 2022 +0000
+
+    platform files
+
+[33mcommit c900bc6042ece988e2f76f717457ccaf16f526d6[m
+Author: Revanth Goli <revanthgoli01@gmail.com>
+Date:   Mon Feb 28 17:06:48 2022 +0530
+
+    Delete dotnetapp/WebApp directory
+
+[33mcommit 2c8f3a8fbfff15e796ad3c06276d874d93f0f947[m
+Author: Nizampatnam Anjana Kumari <61679599+Anu910@users.noreply.github.com>
+Date:   Mon Feb 28 15:32:25 2022 +0530
+
+    Delete WeatherForecast.cs
+
+[33mcommit cc7f6555be58c661af025350d796e79d54ca50d3[m
+Author: Nizampatnam Anjana Kumari <61679599+Anu910@users.noreply.github.com>
+Date:   Mon Feb 28 15:32:03 2022 +0530
+
+    Delete WeatherForecastController.cs
+
+[33mcommit 4c6c3c5e2025cd7ab1633ead61e48a05bc80dbed[m
+Author: Anu910 <nanjana910@gmail.com>
+Date:   Mon Feb 28 15:29:21 2022 +0530
+
+    commit
+
+[33mcommit a26cc853b5d050d8e9d5a6e478e3d959df776667[m
+Author: revanthgoli01 <revanthgoli01@gmail.com>
+Date:   Thu Jan 27 11:37:49 2022 +0530
+
+    removed angular-app
+
+[33mcommit b0c24c245cdae83999ce42f2802944547c945f51[m
+Author: RohinisaiT <97792051+RohinisaiT@users.noreply.github.com>
+Date:   Thu Jan 27 11:19:34 2022 +0530
+
+    Create .gitignore
+
+[33mcommit a20e6d72473db929211d50cb4e004a0cd24f99b4[m
+Author: RohinisaiT <97792051+RohinisaiT@users.noreply.github.com>
+Date:   Thu Jan 27 11:16:37 2022 +0530
+
+    Delete bhanu
+
+[33mcommit 0c7f527cce672e3c529aae72216ac5d6e2f809f1[m
+Author: RohinisaiT <97792051+RohinisaiT@users.noreply.github.com>
+Date:   Thu Jan 27 11:15:54 2022 +0530
+
+    Delete rohini_virtusa
+
+[33mcommit df38c62ba479cadcd25494ab24966778ffc8c663[m
+Author: RohinisaiT <97792051+RohinisaiT@users.noreply.github.com>
+Date:   Tue Jan 25 16:23:37 2022 +0530
+
+    Hello World!!
+
+[33mcommit 83e554728f4e12fea7314ec277c017800b52dcbc[m
+Merge: bc4e185 fcd1035
+Author: revanthgoli01 <revanthgoli01@gmail.com>
+Date:   Sun Jan 23 11:23:05 2022 +0000
+
+    Merge branch 'main' of https://github.com/iamneo-production/40d79b36-fa81-4706-90d5-e973280b22a9
+
+[33mcommit bc4e185fd9c54cb0107bf41386d05b82fec5fee6[m
+Author: revanthgoli01 <revanthgoli01@gmail.com>
+Date:   Sun Jan 23 11:11:55 2022 +0000
+
+    added angular files
+
+[33mcommit fcd1035488d442bc34d67d7bd4c7a952e5c4c0a2[m
+Author: mohanakoutharapu <72790833+mohanakoutharapu@users.noreply.github.com>
+Date:   Sun Jan 23 16:41:25 2022 +0530
+
+    test commit
+
+[33mcommit ed4a753f3bdd950ea5ba65039f22da11100799db[m
+Author: neojarvis <90308092+neojarvis@users.noreply.github.com>
+Date:   Sat Jan 15 15:39:15 2022 +0530
+
+    build
+
+[33mcommit 37f273a6b0618266e862f17853d258e9ab096364[m
+Author: neojarvis <90308092+neojarvis@users.noreply.github.com>
+Date:   Sat Jan 15 15:39:15 2022 +0530
+
+    property file
+
+[33mcommit e3d6baa48704e894abba06c8e841f44322c5a9dc[m
+Author: neojarvis <90308092+neojarvis@users.noreply.github.com>
+Date:   Sat Jan 15 15:39:11 2022 +0530
+
+    Initial commit
