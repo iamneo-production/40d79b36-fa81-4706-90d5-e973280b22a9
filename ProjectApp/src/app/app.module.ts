@@ -15,7 +15,10 @@ import { ValidateEqualDirective, ValidateEqualModule } from 'ng-validate-equal';
 import { SharedService } from './shared.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AccountComponent } from './account/account.component';
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3bc5fa456bc312a4200ffd4e6d2fd305751c9c13
 
 @NgModule({
   declarations: [
@@ -26,7 +29,7 @@ import { AccountComponent } from './account/account.component';
     ProfileComponent,
     AddloanComponent,
     LoanstatusComponent,
-    AccountComponent,
+    AccountComponent
   ],
   imports: [
     BrowserModule,

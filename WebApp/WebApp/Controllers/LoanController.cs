@@ -6,36 +6,91 @@ using System.Net.Http;
 using System.Web.Http;
 using WebApp.Models;
 using Newtonsoft.Json.Linq;
+using System.Web;
+using System.IO;
+using System.Net.Http.Headers;
 
 namespace WebApp.Controllers
 {
     public class LoanController : ApiController
     {
         Entities db = new Entities();
+
         [HttpPost]
-        [Route ("AddLoan")]
-        public string AddLoan([FromBody] JObject data )
+        [Route("addDocument")]
+        public IHttpActionResult AddDocument()
         {
-            LoanApplicant loanApplicant = data["loanAppData"].ToObject<LoanApplicant>();
-            Document document = data["documentData"].ToObject<Document>();
+            var httpRequest = HttpContext.Current.Request;
+            var postedFile = httpRequest.Files["file"];
+            var dType = httpRequest.Form["type"];
+            byte[] bytes;
+            using (BinaryReader br = new BinaryReader(postedFile.InputStream))
+            {
+                bytes = br.ReadBytes(postedFile.ContentLength);
+            }
+            Document document = new Document
+            {
+                documentType = dType,
+                documentUpload = bytes
+            };
             db.Documents.Add(document);
+            db.SaveChanges();
+            return Ok(document.documentId);
+        }
+
+        [HttpGet]
+        [Route("getDocument")]
+        public HttpResponseMessage GetDocument(int id)
+        {
+            HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.OK);
+            Document document = db.Documents.Find(id);
+            response.Content = new ByteArrayContent(document.documentUpload);
+            response.Content.Headers.ContentLength = document.documentUpload.LongLength;
+            response.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment");
+            response.Content.Headers.ContentDisposition.FileName = "files" + document.documentType;
+            response.Content.Headers.ContentType = new MediaTypeHeaderValue(document.documentType);
+            return response;
+        }
+
+        [HttpPost]
+        [Route ("addLoan")]
+        public string AddLoan([FromBody] LoanApplicant loanApplicant)
+        {
             db.LoanApplicants.Add(loanApplicant);
             db.SaveChanges();
             return "loan applied succesfully";
         }
         //get all
-        public IEnumerable<LoanApplicant> getLoan()
+        [HttpGet]
+        [Route("getLoan")]
+        public IEnumerable<LoanApplicant> GetLoan(String email)
         {
-            return db.LoanApplicants.ToList();
+            return db.LoanApplicants.Where(x => x.applicantEmail == email).ToList().Select(x => new LoanApplicant{
+                    loanId = x.loanId,
+                    applicantAadhaar = x.applicantAadhaar,
+                    applicantAddress = x.applicantAddress,
+                    applicantName = x.applicantName,
+                    applicantEmail = x.applicantEmail,
+                    applicantMobile = x.applicantMobile,
+                    applicantPan = x.applicantPan,
+                    loanType = x.loanType,
+                    applicantSalary = x.applicantSalary,
+                    loanAmountRequired = x.loanAmountRequired,
+                    LoanRepaymentMethod = x.LoanRepaymentMethod,
+                    LoanRepaymentMonths = x.LoanRepaymentMonths,
+                    TimestampofLoan = x.TimestampofLoan,
+                    documentId = x.documentId
+                }
+            );
         }
 
         //get specified
-        public LoanApplicant getLoan(int id)
-        {
-            LoanApplicant la = db.LoanApplicants.Find(id);
-            return la;
-        }
-
+        /* public LoanApplicant getLoan(int id)
+         {
+             LoanApplicant la = db.LoanApplicants.Find(id);
+             return la;
+         }
+ */
         //update
         [HttpPut]
         public string editLoan(int id, LoanApplicant loanApplicant)

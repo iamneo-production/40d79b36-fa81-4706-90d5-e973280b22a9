@@ -15,6 +15,7 @@ export class AccountComponent implements OnInit {
   filler : any = {};
   user !: any;
   type !: any;
+  
   usernametype = "hidden";
   emailtype = "hidden";
   mobiletype = "hidden";
@@ -34,6 +35,8 @@ export class AccountComponent implements OnInit {
     this.service.getUser(sessionStorage.getItem("UserId")).subscribe(data=>{
       this.user = data;
     });
+
+    
   }
 
   delete(){
@@ -52,21 +55,28 @@ export class AccountComponent implements OnInit {
         this.messageSet = true;
         this.message += "Enter valid username\n";
       }
-    }else{value.username = this.user.username;}
+    }else{
+      value.username = this.user.username;
+    }
     if(value.email){
       let pattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
       if(!pattern.test(value.email)){
         this.messageSet = true;
         this.message += "Enter valid email\n";
       }
-    }else{value.email = this.user.email;}
+    }else{
+      value.email = this.user.email;
+    }
     if(value.phno){
       let pattern = /[0-9]{10}/;
       if(!pattern.test(value.phno)){
         this.messageSet = true;
         this.message += "Enter valid mobile Number\n";
       }
-    }else{value.phno = this.user.mobileNumber;}
+    }else
+    {
+      value.phno = this.user.mobileNumber;
+    }
     if(value.password){
       let pattern = /^.*(?=.{8,})(?=.*[a-zA-Z])(?=.*\d)(?=.*[!#$%&?@]).*$/;
       if(!pattern.test(value.password)){
