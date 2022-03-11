@@ -62,8 +62,8 @@ namespace WebApp.Controllers
         }
         //get all
         [HttpGet]
-        [Route("getLoan")]
-        public IEnumerable<LoanApplicant> GetLoan(String email)
+        [Route("getLoans")]
+        public IEnumerable<LoanApplicant> GetLoans(String email)
         {
             return db.LoanApplicants.Where(x => x.applicantEmail == email).ToList().Select(x => new LoanApplicant{
                     loanId = x.loanId,
@@ -85,12 +85,30 @@ namespace WebApp.Controllers
         }
 
         //get specified
-        /* public LoanApplicant getLoan(int id)
+        [HttpGet]
+        [Route("getLoan")]
+        public LoanApplicant getLoan(int loanid)
          {
-             LoanApplicant la = db.LoanApplicants.Find(id);
-             return la;
+             LoanApplicant la = db.LoanApplicants.Where(x => x.loanId== loanid).ToList().Select(x => new LoanApplicant
+             {  loanId = x.loanId,
+                 applicantAadhaar = x.applicantAadhaar,
+                 applicantAddress = x.applicantAddress,
+                 applicantName = x.applicantName,
+                 applicantEmail = x.applicantEmail,
+                 applicantMobile = x.applicantMobile,
+                 applicantPan = x.applicantPan,
+                 loanType = x.loanType,
+                 applicantSalary = x.applicantSalary,
+                 loanAmountRequired = x.loanAmountRequired,
+                 LoanRepaymentMethod = x.LoanRepaymentMethod,
+                 LoanRepaymentMonths = x.LoanRepaymentMonths,
+                 TimestampofLoan = x.TimestampofLoan,
+                 documentId = x.documentId
+             }
+            ).First();
+            return la;
          }
- */
+ 
         //update
         [HttpPut]
         public string editLoan(int id, LoanApplicant loanApplicant)

@@ -4,32 +4,81 @@
         <thead scope="row">
         <tr scope="row">
         <th>loanId</th>
-        <th>DocumentId</th>
         <th>Name</th>
         <th>Address</th>
-        <th>Aadhar</th>
+        <th>Aadhaar</th>
         <th>Pan</th>
         <th>Salary</th>
         <th>LoanAmount</th>
+        <th>Options</th>
     </tr>
     </thead>
     <tbody>
         <tr *ngFor="let loan of loans" scope="row">
-            <td>{{loan.loanId}}</td>
-            <td>{{loan.documentId}}</td>
+            <td id="loanid">{{loan.loanId}}</td>
             <td>{{loan.applicantName}}</td>
             <td>{{loan.applicantAddress}}</td>
             <td>{{loan.applicantAadhaar}}</td>
             <td>{{loan.applicantPan}}</td>
             <td>{{loan.applicantSalary}}</td>
             <td>{{loan.loanAmountRequired}}</td>
+            <td><button type="button" class="btn btn-light mr-l"
+                data-toggle="modal" data-target="#edit"  data-backdrop="static" data-keyboard="false" (click)="func(loan.loanId)">Edit</button>
+                <button type="button" class="btn btn-light mr-l">Delete</button></td>
         </tr>
+        
     </tbody>        
-    </table>
-    <div class="row py-3 justify-content-md-center">
-        <div class="col-sm-3"></div>
-        <div class="col col-md-2"><button type="button" data-toggle="modal" data-target="#edit" class="btn btn-primary pull-right">Edit</button></div>
-        <div class="col col-md-3"><button type="button" data-toggle="modal" data-target="#delete" class="btn btn-danger pull-left">Delete</button></div>
-        <div class="col-sm-3"></div>
+    
+
+
+
+
+
+  </table>
+
+  <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="editLabel" aria-hidden="true"> 
+    <div class="modal-dialog" role="document" >
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Edit Details</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+          <div class="modal-body">
+            <p>Edit:
+              
+            </p>
+            <div class="row">
+              <div class="col"><button type=button (click)="toggleAddress()" class="btn btn-primary btn-block">Address</button></div>
+              <div class="col"><button type=button (click)="toggleAadhaar()" class="btn btn-primary btn-block">Aadhaar</button></div>
+              <div class="col"><button type=button (click)="togglePan()" class="btn btn-primary btn-block">PanNumber</button></div>
+              <div class="col"><button type=button (click)="toggleSalary()" class="btn btn-primary btn-block">Salary</button></div>
+              <div class="col"><button type=button (click)="toggleLoanAmount()" class="btn btn-primary btn-block">LoanAmount</button></div>
+
+            </div><br>
+            <form class="form" id="formid" #editForm = "ngForm" (ngSubmit)="onClickSubmit(editForm.value)">
+                <div class="row"><input class="form-control my-2" type="hidden" id="id" name="loanId"  ></div>
+                <div class="row"><input class="form-control my-2" [type]="addresstype" placeholder="applicantAddress" name="address" [(ngModel)]="filler.address" #address="ngModel"></div>
+                <div class="row"><input class="form-control my-2" [type]="aadhaartype" placeholder="applicantAadhaar" name="aadhaar" [(ngModel)]="filler.aadhaar" #aadhaar="ngModel"></div>
+                <div class="row"><input class="form-control my-2" [type]="pantype" placeholder="applicantPan" name="panno" [(ngModel)]="filler.panno" #panno="ngModel"></div>
+                <div class="row"><input class="form-control my-2" [type]="salarytype" name="salary" [(ngModel)]="filler.salary" #salary="ngModel" placeholder="applicantSalary"></div>
+                <div class="row"><input class="form-control my-2" [type]="amounttype" name="amount" [(ngModel)]="filler.amount" #amount="ngModel" placeholder="loanAmountRequired"></div>
+              </form>
+              <div *ngIf="messageSet" class="alert alert-danger"><p>please correct the mistakes below:</p><p [innerText]="message"></p></div>
+              <div *ngIf="messageOkSet"><b>Updated Successfully</b></div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary" form="formid">Save changes</button>
+            </div>
+        </div>
+      </div>
     </div>
-</div>
+  </div>   
+    <script>
+      function func(){
+     var s=document.getElementById("loanid").value;
+     document.getElementById("id").setAttribute("value",s);
+      }
+    </script>

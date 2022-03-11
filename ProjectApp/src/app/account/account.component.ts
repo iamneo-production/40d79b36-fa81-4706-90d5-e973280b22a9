@@ -49,6 +49,7 @@ export class AccountComponent implements OnInit {
     this.messageSet = false;
     this.message = "";
     this.messageOkSet = false;
+    
     if(value.username){
       let pattern = /^.{3,}$/;
       if(!pattern.test(value.username)){
@@ -58,6 +59,7 @@ export class AccountComponent implements OnInit {
     }else{
       value.username = this.user.username;
     }
+
     if(value.email){
       let pattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
       if(!pattern.test(value.email)){
@@ -67,6 +69,7 @@ export class AccountComponent implements OnInit {
     }else{
       value.email = this.user.email;
     }
+
     if(value.phno){
       let pattern = /[0-9]{10}/;
       if(!pattern.test(value.phno)){
@@ -77,6 +80,7 @@ export class AccountComponent implements OnInit {
     {
       value.phno = this.user.mobileNumber;
     }
+
     if(value.password){
       let pattern = /^.*(?=.{8,})(?=.*[a-zA-Z])(?=.*\d)(?=.*[!#$%&?@]).*$/;
       if(!pattern.test(value.password)){
