@@ -111,6 +111,7 @@ namespace WebApp.Controllers
  
         //update
         [HttpPut]
+        [Route("editLoan")]
         public string editLoan(int id, LoanApplicant loanApplicant)
         {
             var loanApplicant_ = db.LoanApplicants.Find(id);
@@ -119,28 +120,27 @@ namespace WebApp.Controllers
             loanApplicant_.loanAmountRequired = loanApplicant.loanAmountRequired;
             loanApplicant_.applicantSalary = loanApplicant.applicantSalary;
             loanApplicant_.applicantEmail = loanApplicant.applicantEmail;
-            loanApplicant_.applicantAadhaar = loanApplicant_.applicantAadhaar;
+            loanApplicant_.applicantAadhaar = loanApplicant.applicantAadhaar;
             loanApplicant_.applicantAddress = loanApplicant.applicantAddress.ToString();
-            loanApplicant_.applicantMobile = loanApplicant_.applicantMobile;
-            loanApplicant_.applicantPan = loanApplicant_.applicantPan;
-            loanApplicant_.LoanRepaymentMonths = loanApplicant_.LoanRepaymentMonths;
+            loanApplicant_.applicantMobile = loanApplicant.applicantMobile;
+            loanApplicant_.applicantPan = loanApplicant.applicantPan;
+            loanApplicant_.LoanRepaymentMonths = loanApplicant.LoanRepaymentMonths;
             db.Entry(loanApplicant_).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
             return "loan details updated";
         }
 
         [HttpDelete]
+        [Route("deleteLoan")]
         public string deleteLoan(int id)
         {
             LoanApplicant la = db.LoanApplicants.Find(id);
-            if (la != null)
-            {
+            
                 db.LoanApplicants.Remove(la);
                 db.SaveChanges();
                 return "Loan Application deleted";
-            }
-            db.SaveChanges();
-            return "Loan deletion failed";
+           
+           
 
         }
     }
