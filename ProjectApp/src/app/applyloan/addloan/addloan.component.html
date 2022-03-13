@@ -61,6 +61,11 @@
                             <input required [(ngModel)]="user.amount" #amount=ngModel type="number" id="enterAmount" name="amount" placeholder="Enter Loan Amount Required">
                             <div class="alert alert-danger" *ngIf="amount.touched && amount.errors?.['required']">This field can't be empty</div>    
                         </div>
+                        <br>
+                        <div class="container">
+                            <input required [(ngModel)]="user.months" #months=ngModel type="number" id="enterMonths" name="months" placeholder="Enter Loan  RepaymentMonths">
+                            <div class="alert alert-danger" *ngIf="months.touched && months.errors?.['required']">This field is required</div>    
+                        </div>
                         <br/>
                         </div>                        
                         </div>

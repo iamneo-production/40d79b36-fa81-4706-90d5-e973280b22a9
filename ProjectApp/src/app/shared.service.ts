@@ -67,6 +67,8 @@ export class SharedService {
   editLoan(val1:any,val2:any){
     return this.http.put(this.APIUrl+'/editLoan?id='+val1, val2);
   }
-
+ deleteLoan(id:any){
+   return this.http.delete(this.APIUrl+"/deleteLoan?id="+id);
+ }
 
 }

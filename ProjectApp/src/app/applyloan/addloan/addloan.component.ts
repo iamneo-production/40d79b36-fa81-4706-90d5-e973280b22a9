@@ -74,11 +74,13 @@ export class AddloanComponent  {
       applicantAadhaar:value.aadh,
       applicantPan:value.panno,
       applicantSalary:value.sal,
+      LoanRepaymentMonths:value.months,
       documentId: parseInt(this.docId.toString())
     };
 
     this.service.addLoan(loanapp).subscribe(res=>{
       alert(res.toString());
+      this.router.navigate(['/profile']);
     });
   }
 }

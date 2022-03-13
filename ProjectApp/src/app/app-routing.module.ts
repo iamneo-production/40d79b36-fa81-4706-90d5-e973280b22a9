@@ -7,7 +7,6 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { AccountComponent } from './account/account.component';
-import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'login-page',pathMatch:'full'},
@@ -18,7 +17,7 @@ const routes: Routes = [
   {path:'loanstatus',component:LoanstatusComponent},
   {path:'addloan',component:AddloanComponent},
   {path:'account',component:AccountComponent},
-  {path:'home',Component:HomeComponent}
+
 ];
 
 @NgModule({
