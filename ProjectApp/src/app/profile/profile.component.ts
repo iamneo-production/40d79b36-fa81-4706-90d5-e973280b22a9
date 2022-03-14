@@ -21,15 +21,18 @@ export class ProfileComponent implements OnInit {
   type !: any;
   loan!: any;
   docId!:any;
-  addresstype="hidden"
-  aadhaartype="hidden"
-  pantype="hidden"
-  salarytype="hidden"
-  nametype="hidden"
+  addresstype="hidden";
+  aadhaartype="hidden";
+  pantype="hidden";
+  salarytype="hidden";
+  nametype="hidden";
+  doctype="hidden";
   fileToUpload!:File;
+  fileType!: any;
   displayProgress!: boolean;
   progress!: number;
   download!: boolean;
+  fileSet: boolean = false;
 
   constructor(private service: SharedService, private router: Router) { }
   
@@ -42,7 +45,7 @@ export class ProfileComponent implements OnInit {
     this.filler.salary="";
     this.filler.name="";
     this.filler.myfile="";
-    
+    this.filler.doctype="";
   }
 
   getemail(){
@@ -56,7 +59,6 @@ export class ProfileComponent implements OnInit {
    fetchloan(){
     this.service.getLoan(this.id).subscribe(data=>{
       this.loan=data;
-      console.log(this.loan)
   });
   }
  
@@ -68,14 +70,12 @@ export class ProfileComponent implements OnInit {
       this.email=this.user.email;
       this.service.getLoans(this.email).subscribe(data=>{
         this.loans=data;
-        console.log(this.loans)
     })});
   }
 
 
 func(id:any){
   this.id=id
-  console.log(this.id);
 }
 
 onClickSubmit(value : any){
@@ -137,7 +137,7 @@ onClickSubmit(value : any){
       else{
         value.name=this.loan.applicantName;
       }
-     
+    
     var val={
       //loanId:value.loanId,
   
@@ -149,37 +149,48 @@ onClickSubmit(value : any){
       applicantMobile:this.loan.applicantMobile,
       applicantEmail:this.loan.applicantEmail,
       loanAmountRequired:this.loan.loanAmountRequired,
-      LoanRepaymentMonths:this.loan.LoanRepaymentMonths
-      
+      LoanRepaymentMonths:this.loan.LoanRepaymentMonths,
+      documentId:this.loan.documentId
   
     }
     
     if(!this.messageSet){
-      this.service.editLoan(this.id, val).subscribe(res=>{
-        this.refreshProfile();
-        this.router.navigate([this.router.url]);
-        this.messageOkSet = true;
-      })
+      if(this.fileSet){
+        let formData = new FormData();
+        formData.append("file", this.fileToUpload);
+        formData.append("type", this.fileType);
+        this.service.addDocument(formData).subscribe( (res: any) =>{
+          if(res.type == HttpEventType.UploadProgress){
+            this.displayProgress = true;
+            this.progress = Math.round((100 * res.loaded) / res.total);
+          }else if (res.type == HttpEventType.Response){
+            this.displayProgress = false;
+            val.documentId = res.body;
+            this.service.editLoan(this.id, val).subscribe(result=>{
+              this.refreshProfile();
+              this.router.navigate([this.router.url]);
+              this.messageOkSet = true;
+              this.messageSet = false;
+              this.fileSet = false;
+            })
+          }
+        })
+      }else{
+        this.service.editLoan(this.id, val).subscribe(res=>{
+          this.refreshProfile();
+          this.router.navigate([this.router.url]);
+          this.messageOkSet = true;
+          this.messageSet = false;
+        })
+      }
     }
-      console.log(this.loan)
   });
   }    
 
-  onSelectFile(event: any) {  
-    let formData = new FormData();
+  onSelectFile(event: any) { 
+    this.fileSet = true; 
     this.fileToUpload = event.target.files.item(0);
-    formData.append("type", ".zip");
-    formData.append("file", this.fileToUpload);
-    this.service.addDocument(formData).subscribe( (res: any) =>{
-      if(res.type == HttpEventType.UploadProgress){
-        this.displayProgress = true;
-        this.progress = Math.round((100 * res.loaded) / res.total);
-      }else if (res.type == HttpEventType.Response){
-        this.displayProgress = false;
-        this.docId = res.body;
-        this.download = true;
-      }
-    })
+    this.fileType = event.target.files.item(0).type;
   } 
 
 
@@ -217,7 +228,7 @@ onClickSubmit(value : any){
   }
   toggleName(){
     if(this.nametype=="hidden"){
-      this.nametype = "text";
+      this.nametype = "name";
     }else{
       this.nametype = "hidden";
       this.filler.name = "";
@@ -236,8 +247,7 @@ onClickSubmit(value : any){
     this.id=id,
     this.service.getLoan(this.id).subscribe(data=>{
       this.loan=data;
-      this.docId=this.loan.documentId
-      console.log(this.docId),
+      this.docId=this.loan.documentId;
       this.service.getDocument(this.docId).subscribe((data: any)=>{
       const blob = new Blob([data], { type: data.type });
       const url= window.URL.createObjectURL(blob);

@@ -65,7 +65,8 @@
                   <div class="progress-bar" role="progressbar" [style.width.%]=progress>
                     {{progress}}
                   </div>
-              </div>  </div>          </div><br>
+              </div></div>          
+            </div><br>
             <form class="form" id="formid" #editForm = "ngForm" (ngSubmit)="onClickSubmit(editForm.value)">
                 
                 <div class="row"><input class="form-control my-2" [type]="nametype" name="name" [(ngModel)]="filler.name" #name="ngModel" placeholder="Applicant Name"></div>

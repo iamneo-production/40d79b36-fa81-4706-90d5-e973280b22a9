@@ -125,6 +125,7 @@ namespace WebApp.Controllers
             loanApplicant_.applicantMobile = loanApplicant.applicantMobile;
             loanApplicant_.applicantPan = loanApplicant.applicantPan;
             loanApplicant_.LoanRepaymentMonths = loanApplicant.LoanRepaymentMonths;
+            loanApplicant_.documentId = loanApplicant.documentId;
             db.Entry(loanApplicant_).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
             return "loan details updated";
