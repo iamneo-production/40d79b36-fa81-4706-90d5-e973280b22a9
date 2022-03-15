@@ -239,7 +239,7 @@ onClickSubmit(value : any){
   delete(){
     this.service.deleteLoan(this.id).subscribe(res=>{});
     this.refreshProfile();
-    this.router.navigate(['/profile']);
+    this.router.navigate(['/profile'])
   }
   
 
