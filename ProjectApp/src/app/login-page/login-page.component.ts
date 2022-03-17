@@ -20,8 +20,15 @@ export class LoginPageComponent {
     }
     this.service.isUserPresent(val).subscribe(res=>{
       if(!isNaN(Number(res))){
-        sessionStorage.setItem("UserId", res.toString());
-        this.router.navigate(['/applyloan']);
+        this.service.isAdmin(val.email).subscribe(flag=>{
+          if(flag){
+            sessionStorage.setItem("User", "admin");
+            this.router.navigate(['/admin']);
+          }else{
+            sessionStorage.setItem("UserId", res.toString());
+            this.router.navigate(['/applyloan']);
+          }
+        });
       }else{
         this.messageSet = true;
         this.message = res.toString();

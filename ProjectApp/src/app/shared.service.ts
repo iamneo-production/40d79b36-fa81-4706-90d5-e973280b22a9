@@ -71,4 +71,16 @@ export class SharedService {
    return this.http.delete(this.APIUrl+"/deleteLoan?id="+id);
  }
 
+ getAllLoans(){
+   return this.http.get(this.APIUrl+"/getAllLoans");
+ }
+
+ updateStatus(id:any, val:boolean){
+   return this.http.put(this.APIUrl+"/updateStatus?id="+id+"&val="+val, null  );
+ }
+
+ isAdmin(email: any){
+   return this.http.get(this.APIUrl+"/isAdminPresent?email="+email);
+ }
+
 }

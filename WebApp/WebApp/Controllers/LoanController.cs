@@ -84,28 +84,53 @@ namespace WebApp.Controllers
             );
         }
 
+        [HttpGet]
+        [Route("getAllLoans")]
+        public IEnumerable<LoanApplicant> getAllLoans()
+        {
+            return db.LoanApplicants.ToList().Select(x => new LoanApplicant
+            {
+                loanId = x.loanId,
+                applicantAadhaar = x.applicantAadhaar,
+                applicantAddress = x.applicantAddress,
+                applicantName = x.applicantName,
+                applicantEmail = x.applicantEmail,
+                applicantMobile = x.applicantMobile,
+                applicantPan = x.applicantPan,
+                loanType = x.loanType,
+                applicantSalary = x.applicantSalary,
+                loanAmountRequired = x.loanAmountRequired,
+                LoanRepaymentMethod = x.LoanRepaymentMethod,
+                LoanRepaymentMonths = x.LoanRepaymentMonths,
+                TimestampofLoan = x.TimestampofLoan,
+                documentId = x.documentId
+            });
+        }
+
         //get specified
         [HttpGet]
         [Route("getLoan")]
         public LoanApplicant getLoan(int loanid)
          {
-             LoanApplicant la = db.LoanApplicants.Where(x => x.loanId== loanid).ToList().Select(x => new LoanApplicant
-             {  loanId = x.loanId,
-                 applicantAadhaar = x.applicantAadhaar,
-                 applicantAddress = x.applicantAddress,
-                 applicantName = x.applicantName,
-                 applicantEmail = x.applicantEmail,
-                 applicantMobile = x.applicantMobile,
-                 applicantPan = x.applicantPan,
-                 loanType = x.loanType,
-                 applicantSalary = x.applicantSalary,
-                 loanAmountRequired = x.loanAmountRequired,
-                 LoanRepaymentMethod = x.LoanRepaymentMethod,
-                 LoanRepaymentMonths = x.LoanRepaymentMonths,
-                 TimestampofLoan = x.TimestampofLoan,
-                 documentId = x.documentId
-             }
-            ).First();
+            LoanApplicant la = null;
+            if(db.LoanApplicants.Any(x => x.loanId==loanid)) {
+                la = db.LoanApplicants.Where(x => x.loanId== loanid).ToList().Select(x => new LoanApplicant
+                {  loanId = x.loanId,
+                     applicantAadhaar = x.applicantAadhaar,
+                     applicantAddress = x.applicantAddress,
+                     applicantName = x.applicantName,
+                     applicantEmail = x.applicantEmail,
+                     applicantMobile = x.applicantMobile,
+                     applicantPan = x.applicantPan,
+                     loanType = x.loanType,
+                     applicantSalary = x.applicantSalary,
+                     loanAmountRequired = x.loanAmountRequired,
+                     LoanRepaymentMethod = x.LoanRepaymentMethod,
+                     LoanRepaymentMonths = x.LoanRepaymentMonths,
+                     TimestampofLoan = x.TimestampofLoan,
+                     documentId = x.documentId
+                }).First();
+            }
             return la;
          }
  
@@ -131,6 +156,24 @@ namespace WebApp.Controllers
             return "loan details updated";
         }
 
+        [HttpPut]
+        [Route("updateStatus")]
+        public string updateStatus(int id, Boolean val, Object obj)
+        {
+            LoanApplicant loanApplicant = db.LoanApplicants.Find(id);
+            if (val == true)
+            {
+                loanApplicant.TimestampofLoan = DateTime.Now.ToString();
+            }
+            else
+            {
+                loanApplicant.TimestampofLoan = "0";
+            }
+            db.Entry(loanApplicant).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+            return "status updated";
+        }
+
         [HttpDelete]
         [Route("deleteLoan")]
         public string deleteLoan(int id)
@@ -140,9 +183,6 @@ namespace WebApp.Controllers
                 db.LoanApplicants.Remove(la);
                 db.SaveChanges();
                 return "Loan Application deleted";
-           
-           
-
         }
     }
 }

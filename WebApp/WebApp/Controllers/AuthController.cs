@@ -36,24 +36,16 @@ namespace WebApp.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpGet]
         [Route("isAdminPresent")]
-        public string isAdminPresent(Login login)
+        public bool isAdminPresent(string email)
         {
-            Login inTable = db.Logins.Find(login.email);
-            if (inTable == null)
+            User user = db.Users.Where(x=>x.email==email).First();
+            if (user.userRole == "admin")
             {
-                return "enter valid email";
+                return true;
             }
-            var pE = Encrypt(login.password);
-            if (pE == inTable.password)
-            {
-                return "valid user";
-            }
-            else
-            {
-                return "enter valid password";
-            }
+            return false;
         }
 
         [HttpPost]
