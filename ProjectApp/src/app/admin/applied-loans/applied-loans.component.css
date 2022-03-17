@@ -1,0 +1,14 @@
+.loanItem{
+    margin: 2%;
+    padding: 1%;
+    padding-left: 3%;
+    border-radius: 10px;
+    background-color: lightgray;
+    font-family: Apple Chancery, cursive;
+}
+
+@media only screen and (max-width: 750px){
+    .col{
+        min-width: 100%;
+    }
+}
