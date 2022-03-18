@@ -10,6 +10,7 @@ import { AccountComponent } from './applyloan/account/account.component';
 import { AdminComponent } from './admin/admin.component';
 import { AppliedLoansComponent } from './admin/applied-loans/applied-loans.component';
 import { LoanDetailsComponent } from './admin/loan-details/loan-details.component';
+import { FooterComponent } from './footer/footer.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'login-page',pathMatch:'full'},
@@ -20,6 +21,7 @@ const routes: Routes = [
     {path:'loanstatus',component:LoanstatusComponent},
     {path:'addloan', component:AddloanComponent},
     {path:'account', component:AccountComponent},
+    {path:'footer',component:FooterComponent},
   ]},
   {path:'admin', component: AdminComponent, children: [
     {path: 'appliedloans', component: AppliedLoansComponent},
