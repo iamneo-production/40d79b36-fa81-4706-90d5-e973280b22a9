@@ -7,6 +7,7 @@ import { LoginPageComponent } from './login-page/login-page.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { AccountComponent } from './account/account.component';
+import { FooterComponent } from './footer/footer.component';
 import { ReviewComponent } from './review/review.component';
 
 const routes: Routes = [
@@ -18,7 +19,8 @@ const routes: Routes = [
   {path:'loanstatus',component:LoanstatusComponent},
   {path:'addloan',component:AddloanComponent},
   {path:'account',component:AccountComponent},
-  {path:'review',component:ReviewComponent}
+  {path:'review',component:ReviewComponent},
+  {path:'footer',component:FooterComponent}
 ];
 
 @NgModule({
