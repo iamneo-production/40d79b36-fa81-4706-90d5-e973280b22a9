@@ -82,5 +82,13 @@ export class SharedService {
  isAdmin(email: any){
    return this.http.get(this.APIUrl+"/isAdminPresent?email="+email);
  }
+  
+  addReview(val: any){
+    return this.http.post(this.APIUrl+'/addReview', val);
+  }
+
+  getReview(val: any): any{
+    return this.http.get<any>(this.APIUrl+'/getReview?id='+val);
+  }
 
 }
