@@ -33,7 +33,7 @@ import { LoanDetailsComponent } from './admin/loan-details/loan-details.componen
     FooterComponent,
     AdminComponent,
     AppliedLoansComponent,
-    LoanDetailsComponent
+    LoanDetailsComponent,
   ],
   imports: [
     BrowserModule,
