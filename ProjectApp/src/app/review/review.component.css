@@ -1,0 +1,28 @@
+button{
+    /*Change the width as much as you like, but make sure 
+    margin-left and margin-right + width = 100%*/
+    width:50%;
+    margin-left:35%;
+    margin-right:15%;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+*{
+    box-sizing: border-box;
+}
+.banner{
+    background:linear-gradient(to left,#e9897e, #da9e98);
+}
+div{
+    padding-left: 5px;
+    padding-right: 5px;
+}
+label{
+    float: left;
+}
