@@ -54,10 +54,33 @@ export class SharedService {
 		return this.http.get(this.APIUrl+'/getDocument?id='+id, {responseType: 'blob'});
   }
 
-  getLoan(val : any): Observable<any>{
+  getLoans(val : any): Observable<any>{
     console.log(val)
-    console.log(this.http.get<any>(this.APIUrl+"/getLoan?email="+val))
-    return this.http.get<any>(this.APIUrl+"/getLoan?email="+val);
+    console.log(this.http.get<any>(this.APIUrl+"/getLoans?email="+val))
+    return this.http.get<any>(this.APIUrl+"/getLoans?email="+val);
   }
+
+  getLoan(id:any){
+    return this.http.get(this.APIUrl+"/getLoan?loanid="+id);
+  }
+
+  editLoan(val1:any,val2:any){
+    return this.http.put(this.APIUrl+'/editLoan?id='+val1, val2);
+  }
+ deleteLoan(id:any){
+   return this.http.delete(this.APIUrl+"/deleteLoan?id="+id);
+ }
+
+ getAllLoans(){
+   return this.http.get(this.APIUrl+"/getAllLoans");
+ }
+
+ updateStatus(id:any, val:boolean){
+   return this.http.put(this.APIUrl+"/updateStatus?id="+id+"&val="+val, null  );
+ }
+
+ isAdmin(email: any){
+   return this.http.get(this.APIUrl+"/isAdminPresent?email="+email);
+ }
 
 }

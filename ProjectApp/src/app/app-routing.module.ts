@@ -2,11 +2,11 @@ import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AddloanComponent } from './applyloan/addloan/addloan.component';
 import { ApplyloanComponent } from './applyloan/applyloan.component';
-import { LoanstatusComponent } from './loanstatus/loanstatus.component';
+import { LoanstatusComponent } from './applyloan/loanstatus/loanstatus.component';
 import { LoginPageComponent } from './login-page/login-page.component';
-import { ProfileComponent } from './profile/profile.component';
+import { ProfileComponent } from './applyloan/profile/profile.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
-import { AccountComponent } from './account/account.component';
+import { AccountComponent } from './applyloan/account/account.component';
 import { FooterComponent } from './footer/footer.component';
 import { ReviewComponent } from './review/review.component';
 

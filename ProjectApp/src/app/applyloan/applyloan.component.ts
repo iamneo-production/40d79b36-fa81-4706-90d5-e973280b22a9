@@ -10,6 +10,12 @@ export class ApplyloanComponent {
   
   constructor(private router: Router){}
 
+  ngOnInit(): void {
+    if(sessionStorage.getItem("UserId")==null){
+      this.router.navigate(['/']);
+    }
+  }
+
   logout(){
     sessionStorage.removeItem("UserId");
     this.router.navigate(['/login-page'])

@@ -25,6 +25,12 @@ namespace WebApp
 
             config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
             config.EnableCors(new EnableCorsAttribute("*", "*", "*"));
+
+           /* var json = config.Formatters.JsonFormatter;
+            json.SerializerSettings.PreserveReferencesHandling = Newtonsoft.Json.PreserveReferencesHandling.Objects;
+            config.Formatters.Remove(config.Formatters.XmlFormatter);*/
+
+
         }
     }
 }

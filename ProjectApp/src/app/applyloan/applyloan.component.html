@@ -1,79 +1,23 @@
 
 <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
     <div class="collapse navbar-collapse justify-content-center">
-    <ul class="navbar-nav mb-2 mb-lg-0">
+    <ul class="nav navbar-nav mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" routerLink="/addloan">ApplyLoan</a>
+          <a class="nav-link active" aria-current="page" routerLink="addloan">ApplyLoan</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/loanstatus">Loan Status</a>
+          <a class="nav-link active" routerLink="loanstatus">Loan Status</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/profile">Profile</a>
+          <a class="nav-link active" routerLink="profile">Profile</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" routerLink="/account">Account</a>
+            <a class="nav-link active" routerLink="account">Account</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" (click)="logout()" style="cursor: pointer;">Logout</a>
+          <a class="nav-link active" (click)="logout()" style="cursor: pointer;">Logout</a>
         </li>
       </ul>
     </div>
 </nav>
-
-
-<!--
-<html>
-<head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-<body>
-    <br />
-    <div class="container" style="text-align: center;">
-        <div class="row">
-            <div class="col-xs-6 ">
-                <ul class="nav nav-tabs">
-                    <li class="active" type="button">
-                        <a href="#homeTab" data-toggle="tab" class="list-group-item" style="text-align: center; color: rgb(245, 245, 245); padding: 10px; border-top-left-radius: 10px; border-bottom-left-radius: 10px;">Apply Loan</a>
-                    </li>
-                    <li>
-                        <a href="#contactTab" data-toggle="tab"class="list-group-item" style="text-align: center; color: rgb(247, 243, 242);padding: 10px;">Loan status</a>
-                    </li>
-                    <li>
-                        <a href="#profile" data-toggle="tab" class="list-group-item" style="text-align: center; color: rgb(250, 247, 246);padding: 10px;">Profile</a>
-                    </li>
-                    <li>
-                        <a routerLink="/login-page" data-toggle="tab" class="list-group-item" style="text-align: center; color: rgb(247, 243, 242);padding: 10px;  border-top-right-radius: 10px; border-bottom-right-radius: 10px;">Logout</a>
-                    </li>
-                    
-                </ul>
-                <div class="tab-content">
-                    <div id="homeTab" class="tab-pane active">
-                    
-                        <h3>Apply loan</h3>
-                        <p>Apply loan content</p>
-                    </div>
-                    <div id="contactTab" class="tab-pane">
-                        <h3>Loan status</h3>
-                        <p>Loan status content</p>
-                    </div>
-                    <div id="profile" class="tab-pane">
-                        <h3>Profile</h3>
-                        <p>Profile content</p>
-                    </div>
-                    <div id="logout" class="tab-pane">
-                        <h3>logout</h3>
-                        <p>logout  content</p>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">
-    </script>
-    <script src="bootstrap/js/bootstrap.min.js"></script>
-</body>
-</html>
--->
+<router-outlet></router-outlet>

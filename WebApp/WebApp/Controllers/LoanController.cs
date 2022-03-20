@@ -62,8 +62,8 @@ namespace WebApp.Controllers
         }
         //get all
         [HttpGet]
-        [Route("getLoan")]
-        public IEnumerable<LoanApplicant> GetLoan(String email)
+        [Route("getLoans")]
+        public IEnumerable<LoanApplicant> GetLoans(String email)
         {
             return db.LoanApplicants.Where(x => x.applicantEmail == email).ToList().Select(x => new LoanApplicant{
                     loanId = x.loanId,
@@ -84,15 +84,59 @@ namespace WebApp.Controllers
             );
         }
 
+        [HttpGet]
+        [Route("getAllLoans")]
+        public IEnumerable<LoanApplicant> getAllLoans()
+        {
+            return db.LoanApplicants.ToList().Select(x => new LoanApplicant
+            {
+                loanId = x.loanId,
+                applicantAadhaar = x.applicantAadhaar,
+                applicantAddress = x.applicantAddress,
+                applicantName = x.applicantName,
+                applicantEmail = x.applicantEmail,
+                applicantMobile = x.applicantMobile,
+                applicantPan = x.applicantPan,
+                loanType = x.loanType,
+                applicantSalary = x.applicantSalary,
+                loanAmountRequired = x.loanAmountRequired,
+                LoanRepaymentMethod = x.LoanRepaymentMethod,
+                LoanRepaymentMonths = x.LoanRepaymentMonths,
+                TimestampofLoan = x.TimestampofLoan,
+                documentId = x.documentId
+            });
+        }
+
         //get specified
-        /* public LoanApplicant getLoan(int id)
+        [HttpGet]
+        [Route("getLoan")]
+        public LoanApplicant getLoan(int loanid)
          {
-             LoanApplicant la = db.LoanApplicants.Find(id);
-             return la;
+            LoanApplicant la = null;
+            if(db.LoanApplicants.Any(x => x.loanId==loanid)) {
+                la = db.LoanApplicants.Where(x => x.loanId== loanid).ToList().Select(x => new LoanApplicant
+                {  loanId = x.loanId,
+                     applicantAadhaar = x.applicantAadhaar,
+                     applicantAddress = x.applicantAddress,
+                     applicantName = x.applicantName,
+                     applicantEmail = x.applicantEmail,
+                     applicantMobile = x.applicantMobile,
+                     applicantPan = x.applicantPan,
+                     loanType = x.loanType,
+                     applicantSalary = x.applicantSalary,
+                     loanAmountRequired = x.loanAmountRequired,
+                     LoanRepaymentMethod = x.LoanRepaymentMethod,
+                     LoanRepaymentMonths = x.LoanRepaymentMonths,
+                     TimestampofLoan = x.TimestampofLoan,
+                     documentId = x.documentId
+                }).First();
+            }
+            return la;
          }
- */
+ 
         //update
         [HttpPut]
+        [Route("editLoan")]
         public string editLoan(int id, LoanApplicant loanApplicant)
         {
             var loanApplicant_ = db.LoanApplicants.Find(id);
@@ -101,29 +145,44 @@ namespace WebApp.Controllers
             loanApplicant_.loanAmountRequired = loanApplicant.loanAmountRequired;
             loanApplicant_.applicantSalary = loanApplicant.applicantSalary;
             loanApplicant_.applicantEmail = loanApplicant.applicantEmail;
-            loanApplicant_.applicantAadhaar = loanApplicant_.applicantAadhaar;
+            loanApplicant_.applicantAadhaar = loanApplicant.applicantAadhaar;
             loanApplicant_.applicantAddress = loanApplicant.applicantAddress.ToString();
-            loanApplicant_.applicantMobile = loanApplicant_.applicantMobile;
-            loanApplicant_.applicantPan = loanApplicant_.applicantPan;
-            loanApplicant_.LoanRepaymentMonths = loanApplicant_.LoanRepaymentMonths;
+            loanApplicant_.applicantMobile = loanApplicant.applicantMobile;
+            loanApplicant_.applicantPan = loanApplicant.applicantPan;
+            loanApplicant_.LoanRepaymentMonths = loanApplicant.LoanRepaymentMonths;
+            loanApplicant_.documentId = loanApplicant.documentId;
             db.Entry(loanApplicant_).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
             return "loan details updated";
         }
 
+        [HttpPut]
+        [Route("updateStatus")]
+        public string updateStatus(int id, Boolean val, Object obj)
+        {
+            LoanApplicant loanApplicant = db.LoanApplicants.Find(id);
+            if (val == true)
+            {
+                loanApplicant.TimestampofLoan = DateTime.Now.ToString();
+            }
+            else
+            {
+                loanApplicant.TimestampofLoan = "0";
+            }
+            db.Entry(loanApplicant).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+            return "status updated";
+        }
+
         [HttpDelete]
+        [Route("deleteLoan")]
         public string deleteLoan(int id)
         {
             LoanApplicant la = db.LoanApplicants.Find(id);
-            if (la != null)
-            {
+            
                 db.LoanApplicants.Remove(la);
                 db.SaveChanges();
                 return "Loan Application deleted";
-            }
-            db.SaveChanges();
-            return "Loan deletion failed";
-
         }
     }
 }

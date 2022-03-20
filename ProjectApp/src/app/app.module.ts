@@ -7,18 +7,18 @@ import { AppComponent } from './app.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { ApplyloanComponent } from './applyloan/applyloan.component';
-import { ProfileComponent } from './profile/profile.component';
+import { ProfileComponent } from './applyloan/profile/profile.component';
 import { AddloanComponent } from './applyloan/addloan/addloan.component';
-import { LoanstatusComponent } from './loanstatus/loanstatus.component';
+import { LoanstatusComponent } from './applyloan/loanstatus/loanstatus.component';
 import { ValidateEqualDirective, ValidateEqualModule } from 'ng-validate-equal';
 
 import { SharedService } from './shared.service';
 import { HttpClientModule } from '@angular/common/http';
-import { AccountComponent } from './account/account.component';
-<<<<<<< HEAD
-
-=======
->>>>>>> 3bc5fa456bc312a4200ffd4e6d2fd305751c9c13
+import { AccountComponent } from './applyloan/account/account.component';
+import { FooterComponent } from './footer/footer.component';
+import { AdminComponent } from './admin/admin.component';
+import { AppliedLoansComponent } from './admin/applied-loans/applied-loans.component';
+import { LoanDetailsComponent } from './admin/loan-details/loan-details.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +29,11 @@ import { AccountComponent } from './account/account.component';
     ProfileComponent,
     AddloanComponent,
     LoanstatusComponent,
-    AccountComponent
+    AccountComponent,
+    FooterComponent,
+    AdminComponent,
+    AppliedLoansComponent,
+    LoanDetailsComponent
   ],
   imports: [
     BrowserModule,
