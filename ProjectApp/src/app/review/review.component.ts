@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -13,7 +14,7 @@ export class ReviewComponent implements OnInit {
   msg: any;
   submitted = false; 
   
-  constructor(private formBuilder: FormBuilder) { 
+  constructor(private formBuilder: FormBuilder,public router: Router) { 
   }
   
   ngOnInit() {
@@ -40,9 +41,9 @@ export class ReviewComponent implements OnInit {
       this.feedbackForm.reset();
       alert('Your feedback is submitted successfully');
       console.log(this.feedbackForm.value);
+      this.router.navigateByUrl('home');
     }
     
   }
 
 }
-
