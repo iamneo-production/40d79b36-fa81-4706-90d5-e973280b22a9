@@ -20,6 +20,8 @@ import { AdminComponent } from './admin/admin.component';
 import { AppliedLoansComponent } from './admin/applied-loans/applied-loans.component';
 import { LoanDetailsComponent } from './admin/loan-details/loan-details.component';
 import { HomeComponent } from './home/home.component';
+import { ReviewComponent } from './review/review.component';
+
 
 @NgModule({
   declarations: [
@@ -35,6 +37,7 @@ import { HomeComponent } from './home/home.component';
     AdminComponent,
     AppliedLoansComponent,
     LoanDetailsComponent,
+    ReviewComponent,
     HomeComponent,
   ],
   imports: [
