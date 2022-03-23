@@ -68,3 +68,16 @@ public string Delete(int id)
     db.SaveChanges();
     return "Review Deleted";
 }*/
+
+/*[HttpGet]
+[Route("getReview")]
+public IEnumerable<Review> getReview()
+{
+    return db.Reviews.ToList();
+}
+[HttpGet]
+[Route("getReview")]
+public Review getReview(int Id)
+{
+    return db.Reviews.FirstOrDefault(r => r.Id == Id);
+}*/
