@@ -92,3 +92,22 @@ export class SharedService {
   }
 
 }
+
+/*PostMessage(input: any) {
+    return this.http.post(this.APIUrl, input, { responseType: 'text' })
+      .pipe(
+        map(
+          (response) => {
+            if (response) {
+              return response;
+            }else{
+              return null;
+            }
+          },
+          (error: any) => {
+            return error;
+          }
+        )
+      )
+  }*/
+
