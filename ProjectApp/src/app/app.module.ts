@@ -19,6 +19,7 @@ import { FooterComponent } from './footer/footer.component';
 import { AdminComponent } from './admin/admin.component';
 import { AppliedLoansComponent } from './admin/applied-loans/applied-loans.component';
 import { LoanDetailsComponent } from './admin/loan-details/loan-details.component';
+import { ReviewComponent } from './review/review.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { LoanDetailsComponent } from './admin/loan-details/loan-details.componen
     AdminComponent,
     AppliedLoansComponent,
     LoanDetailsComponent,
+    ReviewComponent,
   ],
   imports: [
     BrowserModule,
