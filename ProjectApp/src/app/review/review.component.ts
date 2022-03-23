@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+//import { SharedService } from '../shared.service';
 
 
 @Component({
   selector: 'app-review',
   templateUrl: './review.component.html',
   styleUrls: ['./review.component.css']
+  //providers: [SharedService]
 })
 export class ReviewComponent implements OnInit {
 
@@ -14,6 +16,7 @@ export class ReviewComponent implements OnInit {
   msg: any;
   submitted = false; 
   
+  //private sharedService: SharedService
   constructor(private formBuilder: FormBuilder,public router: Router) { 
   }
   
@@ -47,3 +50,15 @@ export class ReviewComponent implements OnInit {
   }
 
 }
+
+
+/*sendFeedback() {
+    this.sharedService.PostMessage(this.feedbackForm.value).subscribe(() => {
+      alert('Your message has been sent.');
+      this.router.navigateByUrl('home');
+      //this.feedbackForm.reset();
+      //this.router.navigateByUrl('home');
+
+    }, (error: any) => {
+      console.log('Error', error);
+    });*/
