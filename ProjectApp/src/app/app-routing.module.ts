@@ -12,6 +12,7 @@ import { AppliedLoansComponent } from './admin/applied-loans/applied-loans.compo
 import { LoanDetailsComponent } from './admin/loan-details/loan-details.component';
 import { FooterComponent } from './footer/footer.component';
 import { ReviewComponent } from './review/review.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
   {path:'',redirectTo:'login-page',pathMatch:'full'},
@@ -24,6 +25,7 @@ const routes: Routes = [
     {path:'account', component:AccountComponent},
     {path:'footer',component:FooterComponent},
     {path:'review',component:ReviewComponent},
+    {path:'home',component:HomeComponent},
   ]},
   {path:'admin', component: AdminComponent, children: [
     {path: 'appliedloans', component: AppliedLoansComponent},
