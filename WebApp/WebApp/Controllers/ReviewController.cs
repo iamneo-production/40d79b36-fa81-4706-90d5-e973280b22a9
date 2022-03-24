@@ -1,22 +1,17 @@
-﻿using WebApp.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using WebApp.Controllers;
 
 namespace WebApp.Controllers
 {
     public class ReviewController : ApiController
     {
-        ReviewEntities db = new ReviewEntities();
-        
-
         //Add post method
         [HttpPost]
-        [Route("api/addReview")]
+        [Route("addReview")]
         public string addReview(Review review)
         {
             db.Reviews.Add(review);
@@ -26,7 +21,7 @@ namespace WebApp.Controllers
 
         //Get single Record
         [HttpGet]
-        [Route("api/getReview/{id}")]
+        [Route("getReview")]
         public Review getReview(int id)
         {
             Review review = db.Reviews.Find(id);
@@ -38,6 +33,7 @@ namespace WebApp.Controllers
 }
 
 //Get All Records
+
 /*[HttpGet]
 [Route("api/Review/getReview")]
 public IEnumerable<Review> Get()

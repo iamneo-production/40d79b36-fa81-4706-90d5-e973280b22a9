@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace BusinessLoanBE.Models
+namespace WebApp.Models
 {
     using System;
     using System.Data.Entity;

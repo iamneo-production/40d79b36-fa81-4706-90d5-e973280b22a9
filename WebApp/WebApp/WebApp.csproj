@@ -170,6 +170,7 @@
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoanController.cs" />
+    <Compile Include="Controllers\ReviewController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -199,6 +200,24 @@
     <Compile Include="Models\Login.cs">
       <DependentUpon>BusinessLoanModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Review.cs">
+      <DependentUpon>ReviewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ReviewModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReviewModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ReviewModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReviewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ReviewModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReviewModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\User.cs">
       <DependentUpon>BusinessLoanModel.tt</DependentUpon>
     </Compile>
@@ -222,6 +241,16 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>BusinessLoanModel.edmx</DependentUpon>
       <LastGenOutput>BusinessLoanModel.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\ReviewModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ReviewModel.edmx</DependentUpon>
+      <LastGenOutput>ReviewModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\ReviewModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ReviewModel.edmx</DependentUpon>
+      <LastGenOutput>ReviewModel.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -250,6 +279,13 @@
     </EntityDeploy>
     <Content Include="Models\BusinessLoanModel.edmx.diagram">
       <DependentUpon>BusinessLoanModel.edmx</DependentUpon>
+    </Content>
+    <EntityDeploy Include="Models\ReviewModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ReviewModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\ReviewModel.edmx.diagram">
+      <DependentUpon>ReviewModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'D:\BusinessLoanBE\Models\ReviewModel.edmx'. 
+﻿// T4 code generation is enabled for model 'D:\40d79b36-fa81-4706-90d5-e973280b22a9\WebApp\WebApp\Models\ReviewModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.
