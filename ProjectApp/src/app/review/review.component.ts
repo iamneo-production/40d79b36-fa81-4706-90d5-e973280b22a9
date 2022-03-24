@@ -27,9 +27,9 @@ export class ReviewComponent implements OnInit {
 
   createForm() {    
     this.feedbackForm = this.formBuilder.group({
-      msg: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(100)]],
-      name: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]]
+      Message: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(100)]],
+      Name: ['', Validators.required],
+      Email: ['', [Validators.required, Validators.email]]
     });
     
     
