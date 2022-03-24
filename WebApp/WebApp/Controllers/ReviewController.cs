@@ -4,11 +4,16 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using WebApp.Models;
+using WebApp.Controllers;
 
 namespace WebApp.Controllers
 {
     public class ReviewController : ApiController
     {
+        ReviewEntities db = new ReviewEntities();
+        
+
         //Add post method
         [HttpPost]
         [Route("addReview")]
