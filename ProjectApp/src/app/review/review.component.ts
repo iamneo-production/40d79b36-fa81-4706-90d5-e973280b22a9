@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { SharedService } from '../shared.service';
 //import { SharedService } from '../shared.service';
 
 
@@ -17,7 +18,7 @@ export class ReviewComponent implements OnInit {
   submitted = false; 
   
   //private sharedService: SharedService
-  constructor(private formBuilder: FormBuilder,public router: Router) { 
+  constructor(private formBuilder: FormBuilder, public router: Router, public service: SharedService) { 
   }
   
   ngOnInit() {
@@ -34,31 +35,26 @@ export class ReviewComponent implements OnInit {
     
   }
 
-  sendFeedback() {
-    this.submitted = true;
-    // stop here if form is invalid
-    if (this.feedbackForm.invalid) {
-      return;
-    }
-    else{
-      this.feedbackForm.reset();
-      alert('Your feedback is submitted successfully');
-      console.log(this.feedbackForm.value);
-      this.router.navigateByUrl('home');
-    }
+  // sendFeedback() {
+  //   this.submitted = true;
+  //   // stop here if form is invalid
+  //   if (this.feedbackForm.invalid) {
+  //     return;
+  //   }
+  //   else{
+  //     this.feedbackForm.reset();
+  //     alert('Your feedback is submitted successfully');
+  //     console.log(this.feedbackForm.value);
+  //     this.router.navigate(['applyloan/home']);
+  //   }
     
+  // }
+
+  sendFeedback() {
+    this.service.PostMessage(this.feedbackForm.value).subscribe(() => {
+      alert('Your message has been sent.');
+      this.router.navigate(['applyloan/home']);
+    });
   }
 
 }
-
-
-/*sendFeedback() {
-    this.sharedService.PostMessage(this.feedbackForm.value).subscribe(() => {
-      alert('Your message has been sent.');
-      this.router.navigateByUrl('home');
-      //this.feedbackForm.reset();
-      //this.router.navigateByUrl('home');
-
-    }, (error: any) => {
-      console.log('Error', error);
-    });*/

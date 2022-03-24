@@ -91,23 +91,10 @@ export class SharedService {
     return this.http.get<any>(this.APIUrl+'/getReview?id='+val);
   }
 
+  PostMessage(input: any) {
+    return this.http.post(this.APIUrl+'/addReview', input);
+  }
+
 }
 
-/*PostMessage(input: any) {
-    return this.http.post(this.APIUrl, input, { responseType: 'text' })
-      .pipe(
-        map(
-          (response) => {
-            if (response) {
-              return response;
-            }else{
-              return null;
-            }
-          },
-          (error: any) => {
-            return error;
-          }
-        )
-      )
-  }*/
 

@@ -16,7 +16,7 @@ namespace WebApp.Controllers
 
         //Add post method
         [HttpPost]
-        [Route("api/addReview/{review}")]
+        [Route("api/addReview")]
         public string addReview(Review review)
         {
             db.Reviews.Add(review);
