@@ -1,0 +1,61 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+	</head>
+	<body>
+
+		<hr>
+		<form>
+    <div class="container">
+      <br/>
+    <div class="row justify-content-center">
+          <div class="col-12 col-md-10 col-lg-8">
+              <!--<form class="form" #search="ngForm" (ngSubmit)="searchFun(search.value)">
+                  <div class="card-body row no-gutters align-items-center">
+                      <div class="col">
+                          <input required type="number" [(ngModel)]="temp.searchId" #searchId=ngModel name="searchId"  class="form-control form-control-lg form-control-borderless" placeholder="Enter Loan ID to get repayment Schedule">
+                      </div>
+                      <div class="col-auto">
+                          <input [disabled]="searchId.errors?.['required']" class="btn btn-lg btn-success" type="submit" value="Search">
+                      </div>
+                  </div>
+                </form>-->
+          </div>
+      </div>
+  </div>
+
+			<!--	<label  ><b>Principal:</b></label>
+
+        <input required placeholder="Principal Amount" value="{{loan.loanAmountRequired}}" (change)="updatePrincipal($event)" >
+				<br />
+				<label for="interest"><b>Interest:</b></label>
+        <input required placeholder="Interest Rate" value="8"  (change)="updateInterestRate($event)" >
+				<br />
+				<label for="terms"><b>Terms:</b></label>
+        <input value="{{loan.LoanRepaymentMonths}}" (change)="updatePeriod($event)">
+
+				<br />
+        <button style = " background-color:rgb(70, 159, 189);" mat-raised-button (click)="getValues()" color="primary">Get Schedule</button>
+-->
+					</form>
+		<form>
+			<fieldset>
+
+
+				<div style=" margin-left: 180px;" id="Result"></div>
+			</fieldset>
+		</form>
+	</body>
+</html>
+
+<script language="typescript">
+
+var wwOpenInstalled;
+if (wwOpenInstalled || parent.wwOpenInstalled) {
+	if (window.Event) {
+		document.captureEvents (Event.MOUSEUP);
+	}
+	document.onmouseup = (parent.wwOpenInstalled) ? parent.wwOnMouseUp : wwOnMouseUp;
+}
+</script>
