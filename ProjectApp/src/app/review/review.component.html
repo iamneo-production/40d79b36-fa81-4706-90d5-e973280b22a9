@@ -13,32 +13,32 @@
                     <form [formGroup]="feedbackForm" (ngSubmit)="sendFeedback()" novalidate>
             
                         <div class="form-group clearfix" [ngClass]="{'has-error':submitted && feedbackForm.controls['name'].errors}">
-                            <label for="name"><b>Name </b></label>
-                            <input type="text" class="form-control" formControlName="name" placeholder="Write your name" required/>
-                            <div *ngIf="submitted && feedbackForm.controls['name'].errors" class="help-block">
-                                <div class="alert alert-danger" *ngIf="feedbackForm.controls['name'].errors?.['required']">*Name is required.</div>
+                            <label for="Name"><b>Name </b></label>
+                            <input type="text" class="form-control" formControlName="Name" placeholder="Write your name" required/>
+                            <div *ngIf="submitted && feedbackForm.controls['Name'].errors" class="help-block">
+                                <div class="alert alert-danger" *ngIf="feedbackForm.controls['Name'].errors?.['required']">*Name is required.</div>
                             </div>
                         </div>
             
 
                         <div class="form-group clearfix" [ngClass]="{'has-error':submitted && feedbackForm.controls['email'].errors}">
-                            <div class="form-floating mb-1"><label for="name"><b>Email </b></label></div>
+                            <div class="form-floating mb-1"><label for="Email"><b>Email </b></label></div>
 
-                            <input type="text" class="form-control" formControlName="email" placeholder="Write your email" required/>
-                            <div *ngIf="submitted && feedbackForm.controls['email'].errors" class="help-block">
-                                <div class="alert alert-danger" *ngIf="feedbackForm.controls['email'].errors?.['required']">*Email is required.</div>
+                            <input type="text" class="form-control" formControlName="Email" placeholder="Write your email" required/>
+                            <div *ngIf="submitted && feedbackForm.controls['Email'].errors" class="help-block">
+                                <div class="alert alert-danger" *ngIf="feedbackForm.controls['Email'].errors?.['required']">*Email is required.</div>
                             </div>
                         </div>
 
 
                         <div class="form-group clearfix" [ngClass]="{'has-error':submitted && feedbackForm.controls['msg'].errors}">
-                            <label for="msg"><b>Please leave your feedback below </b></label>
-                            <textarea class="form-control" formControlName="msg" rows="5" minlength="8" maxlength="100" placeholder="Write your valuable feedback"
+                            <label for="Message"><b>Please leave your feedback below </b></label>
+                            <textarea class="form-control" formControlName="Message" rows="5" minlength="8" maxlength="100" placeholder="Write your valuable feedback"
                             required></textarea>
                             <div *ngIf="submitted && feedbackForm.controls['msg'].errors" class="help-block">
-                                <div class="alert alert-danger" *ngIf="feedbackForm.controls['msg'].errors?.['required']">*Message is required.</div>
-                                <div class="alert alert-danger" *ngIf="feedbackForm.controls['msg'].errors?.['minlength']">*Message must be at least 8 characters long.</div>
-                                <div class="alert alert-danger" *ngIf="feedbackForm.controls['msg'].errors?.['maxlength']">*Message must be at most 100 characters long.</div>
+                                <div class="alert alert-danger" *ngIf="feedbackForm.controls['Message'].errors?.['required']">*Message is required.</div>
+                                <div class="alert alert-danger" *ngIf="feedbackForm.controls['Message'].errors?.['minlength']">*Message must be at least 8 characters long.</div>
+                                <div class="alert alert-danger" *ngIf="feedbackForm.controls['Message'].errors?.['maxlength']">*Message must be at most 100 characters long.</div>
                             </div>
                         </div>
 
