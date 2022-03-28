@@ -22,6 +22,7 @@ import { LoanDetailsComponent } from './admin/loan-details/loan-details.componen
 import { HomeComponent } from './home/home.component';
 import { ReviewComponent } from './review/review.component';
 import { RepaymentComponent } from './Repayment/Repayment.component';
+import { UserReviewsComponent } from './admin/user-reviews/user-reviews.component';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { RepaymentComponent } from './Repayment/Repayment.component';
     LoanDetailsComponent,
     ReviewComponent,
     HomeComponent,
-      RepaymentComponent
+      RepaymentComponent,
+      UserReviewsComponent
    ],
   imports: [
     BrowserModule,

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { SharedService } from 'src/app/shared.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,21 +10,16 @@ import { Router } from '@angular/router';
 })
 export class AdminComponent implements OnInit {
 
-  constructor(private service: SharedService,private router: Router) { }
-  ReviewList:any=[];
+  constructor(private router: Router) { }
+  
 
   ngOnInit(): void {
     if(sessionStorage.getItem("User")!="admin"){
       this.router.navigate(['/']);
     }
-    this.refreshRevList();
+   
   }
- refreshRevList(){
-     this.service.getReview().subscribe(data=>{
-       this.ReviewList=data;
-    });
-  }
-
+ 
   logout(){
     sessionStorage.removeItem("User");
     this.router.navigate(['/login-page']);

@@ -8,25 +8,13 @@
           <a class="nav-link active" routerLink="loandetails">Loan Details</a>
         </li>
         <li class="nav-item">
+          <a class="nav-link active" routerLink="Reviews">Reviews</a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link active" (click)="logout()">Logout</a>
         </li>
       </ul>
     </div>
 </nav>
-<h2 >Reviews</h2>
-<div>
-  <div *ngFor="let dataIem of ReviewList" class="container">
-    <div class="row">
-      <div class="col"><b>Name:</b>{{dataIem.Name}}</div>
-    </div>
-   <!--<div class="row">
-      <div class="col">{{dataIem.Email}}</div>
-    </div>
-  -->
-    <div class="row">
-      <div class="col"><b>Feedback : </b>{{dataIem.Message}}</div>
-    </div>
-  </div>
-</div>
 
 <router-outlet></router-outlet>
