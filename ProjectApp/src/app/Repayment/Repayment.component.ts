@@ -25,7 +25,7 @@ export class RepaymentComponent implements OnInit {
 
   searchFun(val: any){
     this.getLoan(val.searchId);
-    this.getValues();
+
   }
 
 
@@ -97,15 +97,15 @@ export class RepaymentComponent implements OnInit {
           1+monthlyRate, -terms)));
 
     //begin building the return string for the display of the amort table
-      let result = "<h5 >Loan amount:" + balance +  "</h5><br /> " +
-          "<h5 >Interest rate: " + (interestRate*100) +  "</h5><br />" +
-          "<h5 >Number of months: " + terms + "</h5><br />" +
-          "<h5 >Monthly payment:" +Math.round( payment) + "</h5><br />" +
-          "<h5 >Total paid: " + Math.round(payment * terms) + "</h5><br /><br />";
+      let result = "<i><b style='margin-left:200px' >Loan amount:</b></i>₹" + balance +  "<br /> " +
+          "<i><b style='margin-left:200px'>Interest rate: </b></i>" + (interestRate*100) +  "%<br />" +
+          "<i><b style='margin-left:200px'>Number of months: </b></i>" + terms + "</h5><br />" +
+          "<i><b style='margin-left:200px'>Monthly payment: </b></i>₹" +Math.round( payment) + "</h5><br />" +
+          "<i><b style='margin-left:200px'>Total paid: </b></i>₹" + Math.round(payment * terms) + "</h5><br /><br />";
 
       //add header row for table to return string
-    result += "<table  class='table table-striped'  align='center'  border='1'><tr><th  >Month  </th><th >Remaining Balance</th>" +
-          "<th>Monthly Interest</th><th>Monthly Principal</th>";
+    result += "<table  class='table table-striped'  style='align:left;'  border='1'><tr><th style='background-color:Tomato;' >Month  </th><th style='background-color:Tomato;'>Remaining Balance</th>" +
+          "<th style='background-color:Tomato;'>Monthly Interest</th><th style='background-color:Tomato;'>Monthly Principal</th>";
 
       /**
        * Loop that calculates the monthly Loan amortization amounts then adds
@@ -120,7 +120,7 @@ export class RepaymentComponent implements OnInit {
       var monthlyPrincipal = 0;
 
       //start a new table row on each loop iteration
-      result += "<tr align=center>";
+      result += "<tr align='left'>";
 
       //display the month number in col 1 using the loop count variable
       result += "<td >" + (count + 1) + "</td>";
@@ -184,6 +184,7 @@ export class RepaymentComponent implements OnInit {
         this.loanSet = true;
         this.messageSet = false;
       }
+      this.getValues();
     })
   }
 
