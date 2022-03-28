@@ -25,15 +25,31 @@ namespace WebApp.Controllers
         }
 
         //Get single Record
-        [HttpGet]
-        [Route("getReview")]
-        public Review getReview(int id)
-        {
-            Review review = db.Reviews.Find(id);
-            return review;
-        }
+         [HttpGet]
+         [Route("getReview")]
+         public IEnumerable<Review> getReview()
+         {
+            return db.Reviews.ToList().Select(x => new Review
+            {
+                Name = x.Name,
+                Email = x.Email,
+                Message = x.Message
+            });
 
-        
+          }
+       /* public HttpResponseMessage Get()
+        {
+            List<Review> Reviews = new List<Review>();
+            using (ReviewModel dc = new ReviewModel())
+            {
+                Reviews = dc.Review.OrderBy(a => a.Name).ToList();
+                HttpResponseMessage response;
+                response = Request.CreateResponse(HttpStatusCode.OK, Reviews);
+                return response;
+            }
+        }*/
+
+
     }
 }
 

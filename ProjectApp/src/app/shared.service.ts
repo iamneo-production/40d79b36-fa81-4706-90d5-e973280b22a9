@@ -87,8 +87,8 @@ export class SharedService {
     return this.http.post(this.APIUrl+'/addReview', val);
   }
 
-  getReview(val: any): any{
-    return this.http.get<any>(this.APIUrl+'/getReview?id='+val);
+  getReview(){
+    return this.http.get<any>(this.APIUrl+'/getReview');
   }
 
   PostMessage(input: any) {
