@@ -23,7 +23,7 @@ export class RepaymentComponent implements OnInit {
   }
 
 
-  searchFun(val: any){
+  searchFun(val:any){
     this.getLoan(val.searchId);
 
   }
@@ -74,7 +74,7 @@ export class RepaymentComponent implements OnInit {
     else
     {
       //returns error if inputs are invalid
-      div.innerHTML += "";
+      div.innerHTML += " ";
     }
 
   }
@@ -171,11 +171,9 @@ export class RepaymentComponent implements OnInit {
 
       this.loan=res;
 
-      this.balance=this.loan.loanAmountRequired;
 
-      this.terms=this.loan.LoanRepaymentMonths;
 
-      if(res==null){
+      if(res==null ){
         this.messageSet=true;
         this.loanSet=false;
 
@@ -183,6 +181,9 @@ export class RepaymentComponent implements OnInit {
       else{
         this.loanSet = true;
         this.messageSet = false;
+        this.balance=this.loan.loanAmountRequired;
+
+        this.terms=this.loan.LoanRepaymentMonths;
       }
       this.getValues();
     })
