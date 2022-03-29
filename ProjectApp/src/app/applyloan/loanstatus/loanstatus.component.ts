@@ -53,8 +53,4 @@ export class LoanstatusComponent implements OnInit {
       });
     })
   }
-
-  //review(){
-    //this.router.navigate(['/applyloan/review']);
-  //}
 }
