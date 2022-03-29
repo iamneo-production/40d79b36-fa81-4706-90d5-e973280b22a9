@@ -11,7 +11,7 @@
                 <div class="shadow p-3 mb-5 bg-white rounded">
                 <div class="card mx-3 mt-n5 shadow-lg" style="border-radius:0px; border:none">
                     <form [formGroup]="feedbackForm" (ngSubmit)="sendFeedback()" novalidate>
-            
+                        
                         <div class="form-group clearfix" [ngClass]="{'has-error':submitted && feedbackForm.controls['name'].errors}">
                             <label for="Name"><b>Name </b></label>
                             <input type="text" class="form-control" formControlName="Name" placeholder="Write your name" required/>
@@ -20,9 +20,9 @@
                             </div>
                         </div>
             
-
+                        
                         <div class="form-group clearfix" [ngClass]="{'has-error':submitted && feedbackForm.controls['email'].errors}">
-                            <div class="form-floating mb-1"><label for="Email"><b>Email </b></label></div>
+                            <label for="Email"><b>Email </b></label>
 
                             <input type="text" class="form-control" formControlName="Email" placeholder="Write your email" required/>
                             <div *ngIf="submitted && feedbackForm.controls['Email'].errors" class="help-block">
