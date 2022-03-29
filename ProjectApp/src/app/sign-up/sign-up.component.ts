@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { SharedService } from '../shared.service';
 import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-sign-up',

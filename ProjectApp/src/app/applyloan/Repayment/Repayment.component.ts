@@ -95,14 +95,14 @@ export class RepaymentComponent implements OnInit {
           1+monthlyRate, -terms)));
 
     //begin building the return string for the display of the amort table
-      let result = "<i><b style='margin-left:200px' >Loan amount:</b></i>₹" + balance +  "<br /> " +
-          "<i><b style='margin-left:200px'>Interest rate: </b></i>" + (interestRate*100) +  "%<br />" +
-          "<i><b style='margin-left:200px'>Number of months: </b></i>" + terms + "</h5><br />" +
-          "<i><b style='margin-left:200px'>Monthly payment: </b></i>₹" +Math.round( payment) + "</h5><br />" +
-          "<i><b style='margin-left:200px'>Total paid: </b></i>₹" + Math.round(payment * terms) + "</h5><br /><br />";
+      let result = "<i><b style='margin-left:18%' >Loan amount:</b></i>₹" + balance +  "<br /> " +
+          "<i><b style='margin-left:18%'>Interest rate: </b></i>" + (interestRate*100) +  "%<br />" +
+          "<i><b style='margin-left:18%'>Number of months: </b></i>" + terms + "</h5><br />" +
+          "<i><b style='margin-left:18%'>Monthly payment: </b></i>₹" +Math.round( payment) + "</h5><br />" +
+          "<i><b style='margin-left:18%'>Total paid: </b></i>₹" + Math.round(payment * terms) + "</h5><br /><br />";
 
       //add header row for table to return string
-    result += "<table  class='table table-striped'  style='align:left;'  border='1'><tr><th style='background-color:Tomato;' >Month  </th><th style='background-color:Tomato;'>Remaining Balance</th>" +
+    result += "<table  class='table table-striped' style='align:left;'  border='1'><tr align=center><th style='background-color:Tomato;' >Month  </th><th style='background-color:Tomato;'>Remaining Balance</th>" +
           "<th style='background-color:Tomato;'>Monthly Interest</th><th style='background-color:Tomato;'>Monthly Principal</th>";
 
       /**
@@ -118,7 +118,7 @@ export class RepaymentComponent implements OnInit {
       var monthlyPrincipal = 0;
 
       //start a new table row on each loop iteration
-      result += "<tr align='left'>";
+      result += "<tr align='center'>";
 
       //display the month number in col 1 using the loop count variable
       result += "<td >" + (count + 1) + "</td>";

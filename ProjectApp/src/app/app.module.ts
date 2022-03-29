@@ -20,8 +20,8 @@ import { AdminComponent } from './admin/admin.component';
 import { AppliedLoansComponent } from './admin/applied-loans/applied-loans.component';
 import { LoanDetailsComponent } from './admin/loan-details/loan-details.component';
 import { HomeComponent } from './home/home.component';
-import { ReviewComponent } from './review/review.component';
-import { RepaymentComponent } from './Repayment/Repayment.component';
+import { ReviewComponent } from './applyloan/review/review.component';
+import { RepaymentComponent } from './applyloan/Repayment/Repayment.component';
 import { UserReviewsComponent } from './admin/user-reviews/user-reviews.component';
 
 
@@ -41,8 +41,8 @@ import { UserReviewsComponent } from './admin/user-reviews/user-reviews.componen
     LoanDetailsComponent,
     ReviewComponent,
     HomeComponent,
-      RepaymentComponent,
-      UserReviewsComponent
+    RepaymentComponent,
+    UserReviewsComponent
    ],
   imports: [
     BrowserModule,

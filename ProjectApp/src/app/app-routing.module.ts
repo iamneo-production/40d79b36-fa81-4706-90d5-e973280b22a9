@@ -11,9 +11,9 @@ import { AdminComponent } from './admin/admin.component';
 import { AppliedLoansComponent } from './admin/applied-loans/applied-loans.component';
 import { LoanDetailsComponent } from './admin/loan-details/loan-details.component';
 import { FooterComponent } from './footer/footer.component';
-import { ReviewComponent } from './review/review.component';
+import { ReviewComponent } from './applyloan/review/review.component';
 import { HomeComponent } from './home/home.component';
-import { RepaymentComponent } from './Repayment/Repayment.component';
+import { RepaymentComponent } from './applyloan/Repayment/Repayment.component';
 import { UserReviewsComponent } from './admin/user-reviews/user-reviews.component';
 
 const routes: Routes = [
@@ -21,6 +21,7 @@ const routes: Routes = [
   {path:'login-page',component:LoginPageComponent},
   {path:'Sign-up',component:SignUpComponent},
   {path:'applyloan',component:ApplyloanComponent, children: [
+    {path:'',redirectTo:'home',pathMatch:'full'},
     {path:'profile',component:ProfileComponent},
     {path:'loanstatus',component:LoanstatusComponent},
     {path:'addloan', component:AddloanComponent},
@@ -31,10 +32,13 @@ const routes: Routes = [
     {path:'home',component:HomeComponent},
   ]},
   {path:'admin', component: AdminComponent, children: [
+    {path:'',redirectTo:'home',pathMatch:'full'},
     {path: 'appliedloans', component: AppliedLoansComponent},
     {path: 'loandetails', component: LoanDetailsComponent},
-    {path: 'Reviews',component:UserReviewsComponent}
+    {path: 'Reviews',component:UserReviewsComponent},
+    {path:'home', component:HomeComponent},
   ]},
+  {path:'home', redirectTo:'applyloan',pathMatch:'full'}
   //{path:'**', redirectTo:'404'},
 ];
 

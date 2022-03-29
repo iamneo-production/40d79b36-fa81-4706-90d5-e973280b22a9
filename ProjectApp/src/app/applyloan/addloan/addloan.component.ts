@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import * as $ from 'jquery';
 import { NONE_TYPE } from '@angular/compiler';
 import { HttpClient, HttpEventType, HttpProgressEvent, HttpUploadProgressEvent } from '@angular/common/http';
+import { ApplyloanComponent } from '../applyloan.component';
 
 @Component({
   selector: 'app-addloan',
@@ -11,7 +12,6 @@ import { HttpClient, HttpEventType, HttpProgressEvent, HttpUploadProgressEvent }
   styleUrls: ['./addloan.component.css']
 })
 export class AddloanComponent  {
-
   user: any = {};
   email!: any;
   fileToUpload!: File;
@@ -20,6 +20,7 @@ export class AddloanComponent  {
   download: boolean = false;
   progress!: any;
   displayProgress: boolean = false;
+
   constructor(private service: SharedService, private router: Router, private http:HttpClient){}
 
   ngOnInit(): void

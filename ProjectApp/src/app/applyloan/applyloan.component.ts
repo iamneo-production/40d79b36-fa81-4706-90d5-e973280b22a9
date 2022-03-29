@@ -8,9 +8,11 @@ import { Router } from '@angular/router';
 })
 export class ApplyloanComponent {
   
+  home: boolean = true;
   constructor(private router: Router){}
 
   ngOnInit(): void {
+    this.home = true;
     if(sessionStorage.getItem("UserId")==null){
       this.router.navigate(['/']);
     }

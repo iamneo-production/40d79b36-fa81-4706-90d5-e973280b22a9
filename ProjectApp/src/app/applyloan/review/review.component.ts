@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { SharedService } from '../shared.service';
-//import { SharedService } from '../shared.service';
-
+import { SharedService } from 'src/app/shared.service';
 
 @Component({
   selector: 'app-review',
