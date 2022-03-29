@@ -16,15 +16,15 @@ export class RepaymentComponent implements OnInit {
   loanSet: boolean = false;
   messageSet: boolean = false;
   event1: any;
-
+  searchId:string="";
   constructor(public service:SharedService, private router: Router) { }
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+
   }
 
 
-  searchFun(val: any){
-    this.getLoan(val.searchId);
+  searchFun(){
+    this.getLoan((<HTMLInputElement>document.getElementById('searchId')).value);
 
   }
 
@@ -60,7 +60,7 @@ export class RepaymentComponent implements OnInit {
     var div = <HTMLElement>document.getElementById ("Result");
 
     //in case of a re-calc, clear out the div!
-    div.innerHTML = " ";
+
 
     //validate inputs - display error if invalid, otherwise, display table
     var balVal = this.validateInputs(this.balance);
@@ -74,7 +74,7 @@ export class RepaymentComponent implements OnInit {
     else
     {
       //returns error if inputs are invalid
-      div.innerHTML += "";
+      div.innerHTML += "Enter valid Loan id";
     }
 
   }
@@ -171,9 +171,7 @@ export class RepaymentComponent implements OnInit {
 
       this.loan=res;
 
-      this.balance=this.loan.loanAmountRequired;
-
-      this.terms=this.loan.LoanRepaymentMonths;
+      console.log(this.loan) ;
 
       if(res==null){
         this.messageSet=true;
@@ -183,6 +181,9 @@ export class RepaymentComponent implements OnInit {
       else{
         this.loanSet = true;
         this.messageSet = false;
+        this.balance=this.loan.loanAmountRequired;
+
+        this.terms=this.loan.LoanRepaymentMonths;
       }
       this.getValues();
     })
