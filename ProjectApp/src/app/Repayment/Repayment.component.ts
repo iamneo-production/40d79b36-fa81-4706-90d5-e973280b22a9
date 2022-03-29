@@ -171,11 +171,9 @@ export class RepaymentComponent implements OnInit {
 
       this.loan=res;
 
-      this.balance=this.loan.loanAmountRequired;
 
-        this.terms=this.loan.LoanRepaymentMonths;
 
-      if(res==null){
+      if(res==null ){
         this.messageSet=true;
         this.loanSet=false;
 
@@ -183,7 +181,9 @@ export class RepaymentComponent implements OnInit {
       else{
         this.loanSet = true;
         this.messageSet = false;
+        this.balance=this.loan.loanAmountRequired;
 
+        this.terms=this.loan.LoanRepaymentMonths;
       }
       this.getValues();
     })

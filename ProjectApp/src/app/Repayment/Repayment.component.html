@@ -43,8 +43,8 @@
 			<fieldset>
 
 
-				<div style=" margin-left: 100px; margin-right:100px; font-size:19px;"  id="Result"></div>
-
+				<div style=" margin-left: 100px; margin-right:100px; font-size:19px;" *ngIf="!messageSet" id="Result"></div>
+        <div *ngIf="messageSet" class="text-center">Loan with Id: {{loanId}} doesn't exist with your account</div>
 			</fieldset>
 		</form>
 	</body>
