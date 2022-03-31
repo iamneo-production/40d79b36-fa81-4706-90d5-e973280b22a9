@@ -29,12 +29,7 @@ namespace WebApp.Controllers
          [Route("getReview")]
          public IEnumerable<Review> getReview()
          {
-            return db.Reviews.ToList().Select(x => new Review
-            {
-                Name = x.Name,
-                Email = x.Email,
-                Message = x.Message
-            });
+            return db.Reviews.ToList().OrderByDescending(x=>x.Id);
 
           }
        /* public HttpResponseMessage Get()
