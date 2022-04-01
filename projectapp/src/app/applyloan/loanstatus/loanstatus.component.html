@@ -1,0 +1,55 @@
+<div class="container">
+    <br/>
+	<div class="row justify-content-center">
+        <div class="col-12 col-md-10 col-lg-8">
+            <form class="form" #search="ngForm" (ngSubmit)="searchFun(search.value)">
+                <div class="card-body row no-gutters align-items-center">
+                    <div class="col">
+                        <input required type="number" [(ngModel)]="temp.searchId" #searchId=ngModel name="searchId"  class="form-control form-control-lg form-control-borderless" placeholder="Enter Loan ID to view status of your loan">
+                    </div>
+                    <div class="col-auto">
+                        <input [disabled]="searchId.errors?.['required']" class="btn btn-lg btn-success" type="submit" value="Search">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div *ngIf="loanSet || messageSet" class="loanItem">
+        <div *ngIf="loanSet">
+            <div class="row">
+                <div class="col"><b>loanId</b> : {{loan.loanId}}</div>
+                <div class="col"><b>Name</b> : {{loan.applicantName}}</div>
+                <div class="col"><b>Email</b> : {{loan.applicantEmail}}</div>
+            </div>
+            <div class="row">
+                <div class="col"><b>Aadhaar</b> : {{loan.applicantAadhaar}}</div>
+                <div class="col"><b>Pan</b> : {{loan.applicantPan}}</div>
+                <div class="col"><b>Phno</b> : {{loan.applicantMobile}}</div>
+            </div>
+            <div class="row">
+                <div class="col"><b>Salary</b> : {{loan.applicantSalary}}</div>
+                <div class="col"><b>Loan Amount</b> : {{loan.loanAmountRequired}}</div>
+                <div class="col"><b>Repayment Months</b> : {{loan.LoanRepaymentMonths}}</div>
+            </div>
+            <div class="row">
+                <div class="col"><b>Address</b> : {{loan.applicantAddress}}</div>
+            </div>
+            <div class="row"> 
+                <div class="col"><b>Uploaded Doc</b> : <a role="button" (click)="downloadFile(loan.documentId)" style="text-decoration: underline; color:blue;">Download</a></div>
+                <div class="col"><b class="pull-right status">Status: </b> </div>
+                <div class="col">
+                    <div *ngIf="loan.TimestampofLoan==null"><div class="status" style="background-color: whitesmoke;"><b>Pending..</b></div></div>
+                    <div *ngIf="loan.TimestampofLoan=='0'"><div class="status" style="background-color: red;"><b>Rejected</b></div></div>
+                    <div *ngIf="loan.TimestampofLoan!=null && loan.TimestampofLoan!='0'"><div class="status" style="background-color: green"><b>Approved</b></div></div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="messageSet" class="text-center">Loan with Id: {{loanId}} doesn't exist with your account</div>
+    </div>
+</div>
+<span style="position: absolute; margin-bottom: 10px; margin-right: 10px;">
+    <a [routerLink]="['/applyloan/review']">Would you like to give feedback?</a>
+</span>

@@ -1,0 +1,85 @@
+<div class="container">
+  <div class="row">
+      <div class="">
+          <div class="card">
+              <div class="text-center"><h1>Register</h1></div>
+                  <form class="form" #signUp = "ngForm" (ngSubmit)="onClickSubmit(signUp.value)" >
+                      <div class="mb-3">
+                          <select required [(ngModel)]="user.selector" #selector="ngModel" name="selector" class="form-control form-select">
+                            <option [selected]="true" [disabled]="true" [hidden]="true">Admin/User</option>
+                            <option value="admin">Admin</option>
+                            <option value="user">User</option>
+                          </select>
+                          <div class="alert alert-danger" *ngIf="(selector.touched && !selector.dirty)">Please select a value</div>
+                      </div>
+                      <div class="mb-3">
+                        <input [(ngModel)]="user.e_mail" type="email" class="form-control" id="email" name="e_mail" email #e_mail=ngModel placeholder="Enter email" required>
+                        <div class="alert alert-danger" *ngIf="e_mail.touched && e_mail.errors?.['required']">This field can't be empty</div>
+                        <div class='alert alert-danger' *ngIf="e_mail.errors?.['email']">Please enter a valid email</div>
+                      </div>
+                      <div class="mb-3">
+                          <input required [(ngModel)]="user.username" name="username" #username="ngModel" minlength="3" type="text" class="form-control" placeholder="Enter Username" >
+                          <div class="alert alert-danger" *ngIf="username.touched && username.errors?.['required']">This field can't be empty</div>
+                          <div class='alert alert-danger' *ngIf="username.errors?.['minlength']">Please enter a valid username</div>
+                        </div>
+                        <div class="mb-3">
+                          <input required [(ngModel)]="user.phoneno" name="phoneno" #phoneno="ngModel" pattern="[0-9]{10}" type="text" class="form-control" placeholder="Enter Mobilenumber" >
+                          <div class="alert alert-danger" *ngIf="phoneno.touched && phoneno.errors?.['required']">This field can't be empty</div>
+                          <div class='alert alert-danger' *ngIf="phoneno.errors?.['pattern']">Please enter a valid phoneno</div>
+                        </div>
+                      <div class="mb-3">
+                        <input required [(ngModel)]="user.password" name="password" type="password" pattern="^.*(?=.{8,})(?=.*[a-zA-Z])(?=.*\d)(?=.*[!#$%&?@]).*$" #password=ngModel class="form-control" placeholder="Enter Password" id="exampleInputPassword1">
+                        <div class="alert alert-danger" *ngIf="password.touched && password.errors?.['required']">This field can't be empty</div>
+                        <div class='alert alert-danger' *ngIf="password.errors?.['pattern']">Please enter a valid password</div>
+                      </div>
+                      <div class="mb-3">
+                        <input required [(ngModel)]="user.password2" name="password2" ngValidateEqual="password" type="password" pattern="^.*(?=.{8,})(?=.*[a-zA-Z])(?=.*\d)(?=.*[!#$%&?@]).*$" #password2=ngModel class="form-control" placeholder="Enter Password" id="exampleInputPassword1">
+                        <div class="alert alert-danger" *ngIf="password2.touched && password2.errors?.['required']">This field can't be empty</div>
+                        <div class='alert alert-danger' *ngIf="password2.hasError('notEqual')">Password didn't match</div>
+                      </div>
+                      <button type="submit" class="btn btn-primary"
+                        [disabled]="!password.touched || password.errors?.['pattern'] || password2.hasError('notEqual') || username.errors?.['minlength'] || phoneno.errors?.['pattern'] || e_mail.errors?.['email'] || !selector.dirty"
+                      >Submit</button>
+                  </form>
+                  <a style='color:white; margin-top: 10px;' routerLink='/login-page'>Already have Account? Login!</a>
+          </div>
+      </div>
+  </div>
+  </div>
+
+<!--
+<div class="container">
+    <div class="row">
+        <div class="">
+            <div class="card">
+                <div class="text-center"><h1>Register</h1></div>
+                    <form class="form">
+                        <div class="mb-3">
+                            <input type="text" class="form-control" placeholder="Enter admin/user" >
+                          </div>
+                          
+                        <div class="mb-3">
+                          <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email address" aria-describedby="emailHelp">
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" placeholder="Enter Username" >
+                          </div>
+                          <div class="mb-3">
+                            <input type="text" class="form-control" placeholder="Enter Mobilenumber" >
+                          </div>
+                        <div class="mb-3">
+                          <input type="password" class="form-control" placeholder="Enter Password" id="exampleInputPassword1">
+                        </div>
+                        <div class="mb-3">
+                            <input type="password" class="form-control" placeholder="Confirm Password" >
+                          </div>
+                        <button type="submit" class="btn btn-primary" routerLink="/applyloan">Submit</button>
+                    </form>
+                    <a style='color:white; margin-top: 10px;' routerLink='/login-page'>Already have Account? Login!</a>
+            </div>
+        </div>
+    </div>
+    </div>
+    -->
+
+  

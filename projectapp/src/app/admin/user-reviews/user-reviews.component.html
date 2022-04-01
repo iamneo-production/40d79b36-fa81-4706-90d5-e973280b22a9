@@ -1,0 +1,15 @@
+<h2 >Reviews</h2>
+<div class="justify-content-center">
+  <div *ngFor="let dataIem of ReviewList" class="container">
+    <div class="row">
+      <div class="col"><b>Name:</b>{{dataIem.Name}}</div>
+    </div>
+   <div class="row">
+      <div class="col"><b>Email:</b>{{dataIem.Email}}</div>
+    </div>
+
+    <div class="row">
+      <div class="col"><b>Feedback : </b>{{dataIem.Message}}</div>
+    </div>
+  </div>
+</div>
