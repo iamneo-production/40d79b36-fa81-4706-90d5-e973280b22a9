@@ -1,8 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+// import jsPDF from 'jspdf';
 import {SharedService} from 'src/app/shared.service';
-
-
+import * as pdfMake from "pdfmake/build/pdfmake";
+import * as pdfFonts from "pdfmake/build/vfs_fonts";
+const htmlToPdfmake = require("html-to-pdfmake");
+(pdfMake as any).vfs = pdfFonts.pdfMake.vfs;
+import { DatePipe, formatDate } from '@angular/common';
+// https://www.freakyjolly.com/how-to-export-pdf-from-html-in-angular-12/
 @Component({
   selector: 'app-Repayment',
   templateUrl: './Repayment.component.html',
@@ -16,13 +21,28 @@ export class RepaymentComponent implements OnInit {
   loanSet: boolean = false;
   messageSet: boolean = false;
   event1: any;
+  pdfTable: any;
+  showMe:boolean=false;
+  date!:string;
+  datePipe!: DatePipe;
+  dateString! : any;
+  dt!: any [];
+  tempDate!: any;
+  currentdate! : any;
+  latest_date!:any;
 
-  constructor(public service:SharedService, private router: Router) { }
-  ngOnInit(): void {  }
+
+
+  constructor(public service:SharedService, private router: Router) {}
+
+  ngOnInit(): void {
+
+    }
 
 
   searchFun(val:any){
     this.getLoan(val.searchId);
+    this.showMe=!this.showMe;
 
   }
 
@@ -64,6 +84,7 @@ export class RepaymentComponent implements OnInit {
     var balVal = this.validateInputs(this.balance);
     var intrVal = this.validateInputs(this.interestRate);
 
+
     if (balVal && intrVal)
     {
       //Returns div string if inputs are valid
@@ -95,20 +116,21 @@ export class RepaymentComponent implements OnInit {
           1+monthlyRate, -terms)));
 
     //begin building the return string for the display of the amort table
-      let result = "<i><b style='margin-left:18%' >Loan amount:</b></i>₹" + balance +  "<br /> " +
+      let result = "<div><i><b style='margin-left:18%' >Loan amount:</b></i>₹" + balance +  "<br /> " +
           "<i><b style='margin-left:18%'>Interest rate: </b></i>" + (interestRate*100) +  "%<br />" +
-          "<i><b style='margin-left:18%'>Number of months: </b></i>" + terms + "</h5><br />" +
-          "<i><b style='margin-left:18%'>Monthly payment: </b></i>₹" +Math.round( payment) + "</h5><br />" +
-          "<i><b style='margin-left:18%'>Total paid: </b></i>₹" + Math.round(payment * terms) + "</h5><br /><br />";
+          "<i><b style='margin-left:18%'>Number of months: </b></i>" + terms + "<br />" +
+          "<i><b style='margin-left:18%'>Monthly payment: </b></i>₹" +Math.round( payment) + "<br />" +
+          "<i><b style='margin-left:18%'>Total paid: </b></i>₹" + Math.round(payment * terms) + "<br /><br /></div>";
 
       //add header row for table to return string
-    result += "<table  class='table table-striped' style='align:left;'  border='1'><tr align=center><th style='background-color:Tomato;' >Month  </th><th style='background-color:Tomato;'>Remaining Balance</th>" +
-          "<th style='background-color:Tomato;'>Monthly Interest</th><th style='background-color:Tomato;'>Monthly Principal</th>";
+    result += "<table  class='table table-striped' style='align:left;'  border='1'><tr align=center>" +
+          "<th style='background-color:Tomato;'>Monthly Interest</th><th style='background-color:Tomato;'>Monthly Principal</th><th style='background-color:Tomato;'>Monthly Payment</th><th style='background-color:Tomato;'>Remaining Balance</th>";
 
       /**
        * Loop that calculates the monthly Loan amortization amounts then adds
        * them to the return string
        */
+
     for (var count = 0; count < terms; ++count)
     {
       //in-loop interest amount holder
@@ -121,11 +143,10 @@ export class RepaymentComponent implements OnInit {
       result += "<tr align='center'>";
 
       //display the month number in col 1 using the loop count variable
-      result += "<td >" + (count + 1) + "</td>";
 
 
-      //code for displaying in loop balance
-      result += "<td > " +Math.round( balance) + "</td>";
+      // result += "<td >" + (count + 1) + "</td>";
+
 
       //calc the in-loop interest amount and display
       interest = balance * monthlyRate;
@@ -135,11 +156,18 @@ export class RepaymentComponent implements OnInit {
       monthlyPrincipal = payment - interest;
       result += "<td> " + Math.round( monthlyPrincipal )+ "</td>";
 
+      result+="<td>"+Math.round(payment)+"</td>";
+
+      balance=balance-monthlyPrincipal;
+      //code for displaying in loop balance
+      result += "<td > " +Math.round( balance) + "</td>";
+
+
       //end the table row on each iteration of the loop
       result += "</tr>";
 
       //update the balance for each loop iteration
-      balance =balance - monthlyPrincipal;
+      //balance =balance - monthlyPrincipal;
     }
 
     //Final piece added to return string before returning it - closes the table
@@ -148,6 +176,24 @@ export class RepaymentComponent implements OnInit {
     //returns the concatenated string to the page
       return result;
   }
+
+
+  @ViewChild('Result',{static:false}) el!:ElementRef;
+
+  makePDF(){
+    const pdfTable = this.el.nativeElement;
+    var html = htmlToPdfmake(pdfTable.innerHTML);
+    const documentDefinition = { content: html };
+    pdfMake.createPdf(documentDefinition).download("RepaymentSchedule");
+      //  let pdf=new jsPDF('p','mm','a4',true);
+      //  pdf.html(this.el.nativeElement,{
+      //    callback:(pdf)=>{
+      //      pdf.save("RepaymentSchedule.pdf");
+      //    }
+      //  });
+  }
+
+
 
   validateInputs(value:any)
   {
@@ -161,6 +207,7 @@ export class RepaymentComponent implements OnInit {
       return true;
     }
   }
+
 
   getLoan(id:any){
     this.loanId=id;
@@ -180,16 +227,20 @@ export class RepaymentComponent implements OnInit {
         this.loanSet = true;
         this.messageSet = false;
         this.balance=this.loan.loanAmountRequired;
-
         this.terms=this.loan.LoanRepaymentMonths;
+
       }
       this.getValues();
+
+
     })
   }
 
 
 
+
 }
+
 /*calcuateInterest(){
     //this.totalAmount = this.principal * (1 + (this.interestRate/100 * this.period));
     this.monthlyRate=Number(this.interestRate)/(12*100);

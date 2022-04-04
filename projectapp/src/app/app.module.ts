@@ -23,6 +23,7 @@ import { HomeComponent } from './home/home.component';
 import { ReviewComponent } from './applyloan/review/review.component';
 import { RepaymentComponent } from './applyloan/Repayment/Repayment.component';
 import { UserReviewsComponent } from './admin/user-reviews/user-reviews.component';
+import { DatePipe } from '@angular/common';
 
 
 @NgModule({
@@ -52,7 +53,7 @@ import { UserReviewsComponent } from './admin/user-reviews/user-reviews.componen
     ValidateEqualModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
