@@ -84,7 +84,7 @@ export class RepaymentComponent implements OnInit {
     var balVal = this.validateInputs(this.balance);
     var intrVal = this.validateInputs(this.interestRate);
     this.datePipe = new DatePipe('en-US');
-    this.dateString = this.datePipe.transform(new Date(this.date), "MMMM-yyyy");
+    this.dateString = this.datePipe.transform(new Date(this.date), "MMM-yyyy");
 
     if (balVal && intrVal)
     {
@@ -157,7 +157,7 @@ export class RepaymentComponent implements OnInit {
         this.dt[0]=0;
         this.dt[1]+=1;
       }
-      this.dateString = this.datePipe.transform(new Date(this.dt[1],this.dt[0]),"MMMM-yyyy");
+      this.dateString = this.datePipe.transform(new Date(this.dt[1],this.dt[0]),"MMM-yyyy");
       // console.log(this.dateString);
 
 
