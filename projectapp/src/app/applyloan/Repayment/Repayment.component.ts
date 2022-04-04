@@ -42,7 +42,7 @@ export class RepaymentComponent implements OnInit {
 
   searchFun(val:any){
     this.getLoan(val.searchId);
-    this.showMe=!this.showMe;
+    this.showMe=true;
 
   }
 
