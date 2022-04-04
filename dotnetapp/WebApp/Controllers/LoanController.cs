@@ -163,7 +163,7 @@ namespace WebApp.Controllers
             LoanApplicant loanApplicant = db.LoanApplicants.Find(id);
             if (val == true)
             {
-                loanApplicant.TimestampofLoan = DateTime.Now.ToString();
+                loanApplicant.TimestampofLoan = DateTime.Now.ToString("MMMM-dd-yyyy");
             }
             else
             {

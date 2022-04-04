@@ -83,7 +83,8 @@ export class RepaymentComponent implements OnInit {
     //validate inputs - display error if invalid, otherwise, display table
     var balVal = this.validateInputs(this.balance);
     var intrVal = this.validateInputs(this.interestRate);
-
+    this.datePipe = new DatePipe('en-US');
+    this.dateString = this.datePipe.transform(new Date(this.date), "MMMM-yyyy");
 
     if (balVal && intrVal)
     {
@@ -123,8 +124,8 @@ export class RepaymentComponent implements OnInit {
           "<i><b style='margin-left:18%'>Total paid: </b></i>₹" + Math.round(payment * terms) + "<br /><br /></div>";
 
       //add header row for table to return string
-    result += "<table  class='table table-striped' style='align:left;'  border='1'><tr align=center>" +
-          "<th style='background-color:Tomato;'>Monthly Interest</th><th style='background-color:Tomato;'>Monthly Principal</th><th style='background-color:Tomato;'>Monthly Payment</th><th style='background-color:Tomato;'>Remaining Balance</th>";
+    result += "<table  class='table table-striped' style='align:left;'  border='1'><tr align=center><th style='background-color:Tomato;' >S.No </th><th style='background-color:Tomato;' >Month  </th>" +
+          "<th style='background-color:Tomato;'>Monthly Interest</th><th style='background-color:Tomato;'>Monthly Principal</th><th style='background-color:Tomato;'>Monthly Payment</th><th style='background-color:Tomato;'>Remaining Balance</th><th style='background-color:Tomato;'>status</th>";
 
       /**
        * Loop that calculates the monthly Loan amortization amounts then adds
@@ -145,7 +146,20 @@ export class RepaymentComponent implements OnInit {
       //display the month number in col 1 using the loop count variable
 
 
-      // result += "<td >" + (count + 1) + "</td>";
+      result += "<td >" + (count + 1) + "</td>";
+      result += "<td>"+ this.dateString+ "</td>";
+      this.tempDate = this.datePipe.transform(new Date(this.dateString),"M-yyyy");
+      // console.log(this.tempDate);
+      this.dt = this.tempDate.split("-");
+      this.dt[0]= +this.dt[0];
+      this.dt[1]= +this.dt[1];
+      if(this.dt[0] == 12){
+        this.dt[0]=0;
+        this.dt[1]+=1;
+      }
+      this.dateString = this.datePipe.transform(new Date(this.dt[1],this.dt[0]),"MMMM-yyyy");
+      // console.log(this.dateString);
+
 
 
       //calc the in-loop interest amount and display
@@ -162,6 +176,12 @@ export class RepaymentComponent implements OnInit {
       //code for displaying in loop balance
       result += "<td > " +Math.round( balance) + "</td>";
 
+      if(  (new Date()).getTime() >= (new Date(this.dateString).getTime())){
+        result+="<td> Paid</td>"
+      }
+      else{
+        result+="<td>Not Paid</td>"
+      }
 
       //end the table row on each iteration of the loop
       result += "</tr>";
@@ -227,6 +247,7 @@ export class RepaymentComponent implements OnInit {
         this.loanSet = true;
         this.messageSet = false;
         this.balance=this.loan.loanAmountRequired;
+        this.date=this.loan.TimestampofLoan;
         this.terms=this.loan.LoanRepaymentMonths;
 
       }
@@ -235,28 +256,4 @@ export class RepaymentComponent implements OnInit {
 
     })
   }
-
-
-
-
 }
-
-/*calcuateInterest(){
-    //this.totalAmount = this.principal * (1 + (this.interestRate/100 * this.period));
-    this.monthlyRate=Number(this.interestRate)/(12*100);
-    this.oneplusR=Math.pow(1+this.monthlyRate,Number(this.period));
-    this.denominator=this.oneplusR-1;
-
-    this.totalAmount=(this.principal)((this.monthlyRate)(this.oneplusR/this.denominator));
-    this.interestAmount = ((this.principal * Number(this.interestRate)*(this.period/12)) / 100 ) / (this.period);
-
-    this.principalAmount=this.totalAmount-this.interestAmount;
-    this.balanceAmount=
-    this.principal-this.principalAmount;
-    this.totalAmount=Math.round(this.totalAmount);
-    this.interestAmount=Math.round(this.interestAmount);
-    this.principalAmount=Math.round(this.principalAmount);
-    this.balanceAmount=Math.round(this.balanceAmount);
-    //this.totalAmount=(this.principal)*((this.interestRate*Math.pow((1+this.interestRate),this.period))/ (Math.pow((1+this.interestRate),this.period)-1))
-
-  }*/
