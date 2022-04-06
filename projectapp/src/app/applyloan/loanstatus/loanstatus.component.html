@@ -50,6 +50,6 @@
         <div *ngIf="messageSet" class="text-center">Loan with Id: {{loanId}} doesn't exist with your account</div>
     </div>
 </div>
-<span style="position: absolute; margin-bottom: 10px; margin-right: 10px;">
+<div class="d-flex justify-content-end">
     <a [routerLink]="['/applyloan/review']">Would you like to give feedback?</a>
-</span>
+</div>

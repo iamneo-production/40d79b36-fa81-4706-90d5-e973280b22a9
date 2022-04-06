@@ -19,6 +19,9 @@
   font-weight: bold !important;
   text-transform: uppercase;
 }
+.dropdown-item{
+  cursor: pointer;
+}
 
 .result {
   font-family: consolas;

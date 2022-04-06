@@ -2,21 +2,22 @@
 <div class="" style="text-align: center;">
     
     <div class="row" style="text-align: center;">
-        <div class="col d-flex justify-content-center text-center fixed-row-bottom">
-            <ul class="nav">
-                <li class="active" type="button">
-                    <a href="#one" data-toggle="tab" class="list-group-item rounded">1</a>
+        
+         <div class="col d-flex justify-content-center text-center fixed-bottom"> 
+            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link active" id="pills-one-tab" data-bs-toggle="pill" data-bs-target="#one" type="button" role="tab" aria-controls="pills-home" >1</button>
                 </li>
-                <li type="button">
-                    <a href="#two" data-toggle="tab" class="list-group-item rounded">2</a>
+                <li class="nav-item" role="presentation">
+                  <button class="nav-link" id="pills-two-tab" data-bs-toggle="pill" data-bs-target="#two" type="button" role="tab" aria-controls="pills-profile" >2</button>
                 </li>
-            </ul>
+              </ul>
         </div>
 
             <form class="form" #Loanform="ngForm"  (ngSubmit)="onClickSubmit(Loanform.value)">
-            <div class="tab-content">
+                <div class="tab-content" id="pills-tabContent">
                 
-                <div id="one" class="fuild-container row tab-pane active">
+                <div class="tab-pane fade show active" id="one" role="tabpanel" >
 
                     <div class="container-fluid row ">
                         <div class="col">
@@ -69,7 +70,8 @@
                         </div>
                         <br>         
                 </div>
-                <div id="two" class="tab-pane">
+
+                <div class="tab-pane fade " id="two" role="tabpanel" >
                     <div class="selectDocumentType container" id=selectDocumentType>
                         <p>Choose format*</p>
                         <select required [(ngModel)]="user.selector" #selector="ngModel" name="selector" class="form-select" (change)="onSelectType($event)" id="inputGroupSelect04" >
@@ -97,16 +99,16 @@
                     <br/>
                     <button type="submit" class="btn btn-success">Apply Loan</button>
                 </div>
-            </div>
+                </div>
         </form>
 
         </div>
-    </div>
+  
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">
 </script>
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script> -->

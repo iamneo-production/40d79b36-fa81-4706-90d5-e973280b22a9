@@ -14,6 +14,15 @@ body {
   border-radius: 15px;
 }
 
+.nav-item:hover{
+  background-color: grey;
+  border-radius: 15px;
+}
+
+.main-nav-item:hover{
+  background-color: #4B6587;
+  border-radius: 15px;
+}
 .logo{
   float:left;
   font-style: italic;
