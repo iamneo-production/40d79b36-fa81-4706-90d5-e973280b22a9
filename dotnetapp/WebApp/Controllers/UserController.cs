@@ -35,9 +35,25 @@ namespace WebApp.Controllers
         public string editUser(int userid, User user)
         {
             User user1 = db.Users.Find(userid);
+            Login login = db.Logins.Find(user1.email);
+            db.Logins.Remove(login);
+            db.SaveChanges();
+
+            login = new Login();
+
+            login.email = user.email;
+            login.password = user1.password;
+            if (user.password != "")
+            {
+                login.password = new AuthController().Encrypt(user.password);
+            }
+            db.Logins.Add(login);
+            db.SaveChanges();
+
             user1.mobileNumber = user.mobileNumber;
             user1.username = user.username;
             user1.email = user.email;
+
             if (user.password != "")
             {
                 user1.password = new AuthController().Encrypt(user.password);
