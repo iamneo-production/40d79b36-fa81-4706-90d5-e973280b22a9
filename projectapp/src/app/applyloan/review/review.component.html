@@ -12,30 +12,31 @@
                 <div class="card mx-3 mt-n5 shadow-lg" style="border-radius:0px; border:none">
                     <form [formGroup]="feedbackForm" (ngSubmit)="sendFeedback()" novalidate>
                         
-                        <div class="form-group clearfix" [ngClass]="{'has-error':submitted && feedbackForm.controls['name'].errors}">
+                        <div class="form-group clearfix" [ngClass]="{'has-error':submitted}">
                             <label for="Name"><b>Name </b></label>
                             <input type="text" class="form-control" formControlName="Name" placeholder="Write your name" required/>
-                            <div *ngIf="submitted && feedbackForm.controls['Name'].errors" class="help-block">
+                            <div *ngIf="submitted" class="help-block">
                                 <div class="alert alert-danger" *ngIf="feedbackForm.controls['Name'].errors?.['required']">*Name is required.</div>
                             </div>
                         </div>
             
                         
-                        <div class="form-group clearfix" [ngClass]="{'has-error':submitted && feedbackForm.controls['email'].errors}">
+                        <div class="form-group clearfix" [ngClass]="{'has-error':submitted}">
                             <label for="Email"><b>Email </b></label>
 
                             <input type="text" class="form-control" formControlName="Email" placeholder="Write your email" required/>
-                            <div *ngIf="submitted && feedbackForm.controls['Email'].errors" class="help-block">
+                            <div *ngIf="submitted" class="help-block">
                                 <div class="alert alert-danger" *ngIf="feedbackForm.controls['Email'].errors?.['required']">*Email is required.</div>
+                                <div class="alert alert-danger" *ngIf="feedbackForm.controls['Email'].errors?.['email']">*Enter a valid email.</div>
                             </div>
                         </div>
 
 
-                        <div class="form-group clearfix" [ngClass]="{'has-error':submitted && feedbackForm.controls['msg'].errors}">
+                        <div class="form-group clearfix" [ngClass]="{'has-error':submitted}">
                             <label for="Message"><b>Please leave your feedback below </b></label>
                             <textarea class="form-control" formControlName="Message" rows="5" minlength="8" maxlength="100" placeholder="Write your valuable feedback"
                             required></textarea>
-                            <div *ngIf="submitted && feedbackForm.controls['msg'].errors" class="help-block">
+                            <div *ngIf="submitted" class="help-block">
                                 <div class="alert alert-danger" *ngIf="feedbackForm.controls['Message'].errors?.['required']">*Message is required.</div>
                                 <div class="alert alert-danger" *ngIf="feedbackForm.controls['Message'].errors?.['minlength']">*Message must be at least 8 characters long.</div>
                                 <div class="alert alert-danger" *ngIf="feedbackForm.controls['Message'].errors?.['maxlength']">*Message must be at most 100 characters long.</div>
@@ -45,7 +46,7 @@
 
                         <div class="form-group row">
                             <div class="col-sm-10">
-                                <button class="btn btn-info" type="submit" [disabled]="submitted && feedbackForm.invalid">Submit</button>
+                                <button class="btn btn-info" type="submit">Submit</button>
                             </div>
                         </div>
 
