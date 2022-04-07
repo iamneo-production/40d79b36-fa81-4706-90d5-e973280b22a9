@@ -43,12 +43,6 @@ namespace WebApp.Controllers
 
             login.email = user.email;
             login.password = user1.password;
-            if (user.password != "")
-            {
-                login.password = new AuthController().Encrypt(user.password);
-            }
-            db.Logins.Add(login);
-            db.SaveChanges();
 
             user1.mobileNumber = user.mobileNumber;
             user1.username = user.username;
@@ -57,10 +51,14 @@ namespace WebApp.Controllers
             if (user.password != "")
             {
                 user1.password = new AuthController().Encrypt(user.password);
+                login.password = user1.password;
             }
             user1.userRole = user.userRole;
 
             db.Entry(user1).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+
+            db.Logins.Add(login);
             db.SaveChanges();
 
             return "user edited";
