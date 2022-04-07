@@ -128,7 +128,7 @@ onClickSubmit(value : any){
       }
   
       if(value.name){
-        let pattern=/^.{3,}$/;
+        let pattern=/^[a-zA-Z]{3,}$/;
         if(!pattern.test(value.name)){
           this.messageSet = true;
           this.message += "Enter Valid Name\n";

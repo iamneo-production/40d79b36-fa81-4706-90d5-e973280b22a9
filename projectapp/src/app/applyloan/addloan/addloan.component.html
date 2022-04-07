@@ -22,8 +22,9 @@
                     <div class="container-fluid row ">
                         <div class="col">
                         <div class="container">
-                            <input required [(ngModel)]="user.name" #name="ngModel" type="text" id="enterName" name="name" placeholder="Enter Applicant Name">
+                            <input required [(ngModel)]="user.name" #name="ngModel" type="text" id="enterName" minlength="3" name="name" placeholder="Enter Applicant Name">
                             <div class="alert alert-danger" *ngIf="name.touched && name.errors?.['required']">This field can't be empty</div>
+                            <div class='alert alert-danger' *ngIf="name.errors?.['minlength']">Please enter a valid username</div>
                         </div>
                         <br/>
                         <div class="container">
@@ -52,18 +53,24 @@
                         </div>
                         <br/>
                         <div class="container">
-                            <input required [(ngModel)]="user.sal" #sal=ngModel type="number" id="enterSalary" name="sal" placeholder="Enter Applicant Salary">
+                            <input required [(ngModel)]="user.sal" #sal=ngModel type="number" id="enterSalary" pattern="[0-9]{2,10}" name="sal" placeholder="Enter Applicant Salary">
                             <div class="alert alert-danger" *ngIf="sal.touched && sal.errors?.['required']">This field can't be empty</div>
+                            <div class='alert alert-danger' *ngIf="sal.errors?.['pattern']">Please enter a valid Salary</div>
+
                         </div>
                         <br/>
                         <div class="container">
-                            <input required [(ngModel)]="user.amount" #amount=ngModel type="number" id="enterAmount" name="amount" placeholder="Enter Loan Amount Required">
-                            <div class="alert alert-danger" *ngIf="amount.touched && amount.errors?.['required']">This field can't be empty</div>    
+                            <input required [(ngModel)]="user.amount" #amount=ngModel type="number" id="enterAmount" pattern="[0-9]{3,10}" name="amount" placeholder="Enter Loan Amount Required">
+                            <div class="alert alert-danger" *ngIf="amount.touched && amount.errors?.['required']">This field can't be empty</div> 
+                            <div class='alert alert-danger' *ngIf="amount.errors?.['pattern']">Please enter valid LoanAmount</div>
+   
                         </div>
                         <br>
                         <div class="container">
-                            <input required [(ngModel)]="user.months" #months=ngModel type="number" id="enterMonths" name="months" placeholder="Enter Loan  RepaymentMonths">
-                            <div class="alert alert-danger" *ngIf="months.touched && months.errors?.['required']">This field is required</div>    
+                            <input required [(ngModel)]="user.months" #months=ngModel type="number" id="enterMonths" pattern="[1-9]{1,8}" name="months" placeholder="Enter Loan  RepaymentMonths">
+                            <div class="alert alert-danger" *ngIf="months.touched && months.errors?.['required']">This field is required</div> 
+                            <div class='alert alert-danger' *ngIf="months.errors?.['pattern']">Please enter valid repaymentMonths</div>
+   
                         </div>
                         <br/>
                         </div>                        
@@ -79,7 +86,7 @@
                             <option value="application/x-rar-compressed">rar</option>
                             <option value="application/x-7z-compressed">7zip</option>
                         </select>
-                        <div class="alert alert-danger" *ngIf="(selector.touched && !selector.dirty)">Please select a value</div>
+                        <div class="alert alert-danger" *ngIf="(selector.touched && !selector.dirty)">Please select a format</div>
                         </div>
                     <br>
                     <br>
@@ -97,7 +104,7 @@
                     </div>
                     <br/>
                     <br/>
-                    <button type="submit" class="btn btn-success">Apply Loan</button>
+                    <button type="submit" class="btn btn-success">Submit</button>
                 </div>
                 </div>
         </form>
