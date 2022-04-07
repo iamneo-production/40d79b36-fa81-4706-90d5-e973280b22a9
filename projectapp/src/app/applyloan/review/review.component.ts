@@ -49,6 +49,10 @@ export class ReviewComponent implements OnInit {
   // }
 
   sendFeedback() {
+    this.submitted = true;
+    if(this.feedbackForm.invalid){
+      return;
+    }
     this.service.PostMessage(this.feedbackForm.value).subscribe(() => {
       alert('Your message has been sent.');
       this.router.navigate(['applyloan/home']);
