@@ -22,9 +22,9 @@
                     <div class="container-fluid row ">
                         <div class="col">
                         <div class="container">
-                            <input required [(ngModel)]="user.name" #name="ngModel" type="text" id="enterName" minlength="3" name="name" placeholder="Enter Applicant Name">
+                            <input required [(ngModel)]="user.name" #name="ngModel" type="text" id="enterName" minlength="3" pattern="[a-zA-Z]" name="name" placeholder="Enter Applicant Name">
                             <div class="alert alert-danger" *ngIf="name.touched && name.errors?.['required']">This field can't be empty</div>
-                            <div class='alert alert-danger' *ngIf="name.errors?.['minlength']">Please enter a valid username</div>
+                            <div class='alert alert-danger' *ngIf="name.errors?.['minlength'] && name.errors?.['pattern']">Please enter a valid name</div>
                         </div>
                         <br/>
                         <div class="container">
@@ -53,7 +53,7 @@
                         </div>
                         <br/>
                         <div class="container">
-                            <input required [(ngModel)]="user.sal" #sal=ngModel type="number" id="enterSalary" pattern="[0-9]{2,10}" name="sal" placeholder="Enter Applicant Salary">
+                            <input required [(ngModel)]="user.sal" #sal=ngModel type="number" id="enterSalary" pattern="[0-9]{3,10}" name="sal" placeholder="Enter Applicant Salary">
                             <div class="alert alert-danger" *ngIf="sal.touched && sal.errors?.['required']">This field can't be empty</div>
                             <div class='alert alert-danger' *ngIf="sal.errors?.['pattern']">Please enter a valid Salary</div>
 
@@ -104,7 +104,7 @@
                     </div>
                     <br/>
                     <br/>
-                    <button type="submit" class="btn btn-success">Submit</button>
+                    <button type="submit" class="btn btn-success"  [disabled]="!panno.touched || !mob.touched || !add.touched || !aadh.touched || !sal.touched || !amount.touched || !months.touched || panno.errors?.['pattern'] || aadh.errors?.['pattern'] ||  add.errors?.['required'] || sal.errors?.['pattern'] ||  amount.errors?.['pattern'] ||  months.errors?.['pattern'] || name.errors?.['minlength'] || mob.errors?.['pattern'] || !selector.dirty">Submit</button>
                 </div>
                 </div>
         </form>

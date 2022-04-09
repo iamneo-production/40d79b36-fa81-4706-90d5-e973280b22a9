@@ -37,6 +37,11 @@ export class AddloanComponent  {
   onSelectFile(event: any) {  
     let formData = new FormData();
     this.fileToUpload = event.target.files.item(0);
+    if(this.fileToUpload.size > 2097152){
+      alert("Upload Failed! Please Upload below 2MB");
+     
+   }
+   else{
     formData.append("type", this.selected);
     formData.append("file", this.fileToUpload);
     this.service.addDocument(formData).subscribe( (res: any) =>{
@@ -50,7 +55,7 @@ export class AddloanComponent  {
       }
     })
   } 
-  
+}
   downloadFile(){
     this.service.getDocument(this.docId).subscribe((data: any)=>{
       const blob = new Blob([data], { type: data.type });
